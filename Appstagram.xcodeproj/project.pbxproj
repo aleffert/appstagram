@@ -1,0 +1,261 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		77114DCB1533D07700EF693C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77114DCA1533D07700EF693C /* Cocoa.framework */; };
+		77114DD51533D07700EF693C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77114DD31533D07700EF693C /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		77114DC71533D07700EF693C /* Appstagram.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Appstagram.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		77114DCA1533D07700EF693C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		77114DCD1533D07700EF693C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		77114DCE1533D07700EF693C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		77114DCF1533D07700EF693C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		77114DD21533D07700EF693C /* Appstagram-Info.plist */ = {isa = PBXFileReference; path = "Appstagram-Info.plist"; sourceTree = "<group>"; };
+		77114DD41533D07700EF693C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		77114DD61533D07700EF693C /* Appstagram-Prefix.pch */ = {isa = PBXFileReference; path = "Appstagram-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		77114DC41533D07700EF693C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77114DCB1533D07700EF693C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77114DBC1533D07700EF693C = {
+			isa = PBXGroup;
+			children = (
+				77114DD01533D07700EF693C /* Appstagram */,
+				77114DC91533D07700EF693C /* Frameworks */,
+				77114DC81533D07700EF693C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		77114DC81533D07700EF693C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77114DC71533D07700EF693C /* Appstagram.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77114DC91533D07700EF693C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77114DCA1533D07700EF693C /* Cocoa.framework */,
+				77114DCC1533D07700EF693C /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77114DCC1533D07700EF693C /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77114DCD1533D07700EF693C /* AppKit.framework */,
+				77114DCE1533D07700EF693C /* CoreData.framework */,
+				77114DCF1533D07700EF693C /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		77114DD01533D07700EF693C /* Appstagram */ = {
+			isa = PBXGroup;
+			children = (
+				77114DD11533D07700EF693C /* Supporting Files */,
+			);
+			path = Appstagram;
+			sourceTree = "<group>";
+		};
+		77114DD11533D07700EF693C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77114DD21533D07700EF693C /* Appstagram-Info.plist */,
+				77114DD31533D07700EF693C /* InfoPlist.strings */,
+				77114DD61533D07700EF693C /* Appstagram-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77114DC61533D07700EF693C /* Appstagram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77114DD91533D07700EF693C /* Build configuration list for PBXNativeTarget "Appstagram" */;
+			buildPhases = (
+				77114DC31533D07700EF693C /* Sources */,
+				77114DC41533D07700EF693C /* Frameworks */,
+				77114DC51533D07700EF693C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Appstagram;
+			productName = Appstagram;
+			productReference = 77114DC71533D07700EF693C /* Appstagram.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		77114DBE1533D07700EF693C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 77114DC11533D07700EF693C /* Build configuration list for PBXProject "Appstagram" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 77114DBC1533D07700EF693C;
+			productRefGroup = 77114DC81533D07700EF693C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				77114DC61533D07700EF693C /* Appstagram */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77114DC51533D07700EF693C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77114DD51533D07700EF693C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77114DC31533D07700EF693C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		77114DD31533D07700EF693C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77114DD41533D07700EF693C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		77114DD71533D07700EF693C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		77114DD81533D07700EF693C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		77114DDA1533D07700EF693C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Appstagram/Appstagram-Prefix.pch";
+				INFOPLIST_FILE = "Appstagram/Appstagram-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		77114DDB1533D07700EF693C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Appstagram/Appstagram-Prefix.pch";
+				INFOPLIST_FILE = "Appstagram/Appstagram-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77114DC11533D07700EF693C /* Build configuration list for PBXProject "Appstagram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77114DD71533D07700EF693C /* Debug */,
+				77114DD81533D07700EF693C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77114DD91533D07700EF693C /* Build configuration list for PBXNativeTarget "Appstagram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77114DDA1533D07700EF693C /* Debug */,
+				77114DDB1533D07700EF693C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 77114DBE1533D07700EF693C /* Project object */;
+}
