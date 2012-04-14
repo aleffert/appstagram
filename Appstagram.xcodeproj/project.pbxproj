@@ -9,17 +9,57 @@
 /* Begin PBXBuildFile section */
 		77114DCB1533D07700EF693C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77114DCA1533D07700EF693C /* Cocoa.framework */; };
 		77114DD51533D07700EF693C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77114DD31533D07700EF693C /* InfoPlist.strings */; };
+		77114DDE1533D0B200EF693C /* AppstagramSIMBL.m in Sources */ = {isa = PBXBuildFile; fileRef = 77114DDD1533D0B200EF693C /* AppstagramSIMBL.m */; };
+		77200C871537DFF800831670 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77114DCA1533D07700EF693C /* Cocoa.framework */; };
+		77200C8D1537DFF800831670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77200C8B1537DFF800831670 /* InfoPlist.strings */; };
+		77200C8F1537DFF800831670 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77200C8E1537DFF800831670 /* main.m */; };
+		77200C931537DFF800831670 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 77200C911537DFF800831670 /* Credits.rtf */; };
+		77200C991537DFF800831670 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77200C971537DFF800831670 /* MainMenu.xib */; };
+		77200C9D1537E08000831670 /* AppstagramSIMBL.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77114DC71533D07700EF693C /* AppstagramSIMBL.bundle */; };
+		778B29F71537E0FA00F31379 /* AppstagramDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29F61537E0FA00F31379 /* AppstagramDelegate.m */; };
+		778B29FC1537E1FB00F31379 /* AppstagramCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29FB1537E1FB00F31379 /* AppstagramCommon.m */; };
+		778B29FD1537E20000F31379 /* AppstagramCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29FB1537E1FB00F31379 /* AppstagramCommon.m */; };
+		778B2A251537E6C900F31379 /* NSWindow+AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */; };
+		778B2A281537E8E700F31379 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		778B29FF1537E30B00F31379 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77114DBE1533D07700EF693C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77114DC61533D07700EF693C;
+			remoteInfo = AppstagramSIMBL;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		77114DC71533D07700EF693C /* Appstagram.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Appstagram.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		77114DC71533D07700EF693C /* AppstagramSIMBL.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppstagramSIMBL.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		77114DCA1533D07700EF693C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		77114DCD1533D07700EF693C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		77114DCE1533D07700EF693C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		77114DCF1533D07700EF693C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		77114DD21533D07700EF693C /* Appstagram-Info.plist */ = {isa = PBXFileReference; path = "Appstagram-Info.plist"; sourceTree = "<group>"; };
 		77114DD41533D07700EF693C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		77114DD61533D07700EF693C /* Appstagram-Prefix.pch */ = {isa = PBXFileReference; path = "Appstagram-Prefix.pch"; sourceTree = "<group>"; };
+		77114DD61533D07700EF693C /* Appstagram-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appstagram-Prefix.pch"; sourceTree = "<group>"; };
+		77114DDC1533D0B200EF693C /* AppstagramSIMBL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramSIMBL.h; path = Source/AppstagramSIMBL.h; sourceTree = "<group>"; };
+		77114DDD1533D0B200EF693C /* AppstagramSIMBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramSIMBL.m; path = Source/AppstagramSIMBL.m; sourceTree = "<group>"; };
+		77200C851537DFF800831670 /* Appstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77200C8A1537DFF800831670 /* Appstagram-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Appstagram-Info.plist"; sourceTree = "<group>"; };
+		77200C8C1537DFF800831670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		77200C8E1537DFF800831670 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		77200C901537DFF800831670 /* Appstagram-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appstagram-Prefix.pch"; sourceTree = "<group>"; };
+		77200C921537DFF800831670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		77200C981537DFF800831670 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		778B29F51537E0FA00F31379 /* AppstagramDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramDelegate.h; path = Source/AppstagramDelegate.h; sourceTree = "<group>"; };
+		778B29F61537E0FA00F31379 /* AppstagramDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramDelegate.m; path = Source/AppstagramDelegate.m; sourceTree = "<group>"; };
+		778B29F81537E10100F31379 /* CGSPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CGSPrivate.h; path = Appstagram/Source/CGSPrivate.h; sourceTree = "<group>"; };
+		778B29FA1537E1FB00F31379 /* AppstagramCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramCommon.h; path = Appstagram/Source/AppstagramCommon.h; sourceTree = "<group>"; };
+		778B29FB1537E1FB00F31379 /* AppstagramCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramCommon.m; path = Appstagram/Source/AppstagramCommon.m; sourceTree = "<group>"; };
+		778B2A211537E49C00F31379 /* AppstagramSIMBL-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppstagramSIMBL-Info.plist"; sourceTree = "<group>"; };
+		778B2A231537E6C900F31379 /* NSWindow+AppstagramFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+AppstagramFilter.h"; path = "Source/NSWindow+AppstagramFilter.h"; sourceTree = "<group>"; };
+		778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+AppstagramFilter.m"; path = "Source/NSWindow+AppstagramFilter.m"; sourceTree = "<group>"; };
+		778B2A261537E8E700F31379 /* AppstagramFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramFilter.h; path = Appstagram/Source/AppstagramFilter.h; sourceTree = "<group>"; };
+		778B2A271537E8E700F31379 /* AppstagramFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramFilter.m; path = Appstagram/Source/AppstagramFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,13 +71,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		77200C821537DFF800831670 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77200C871537DFF800831670 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		77114DBC1533D07700EF693C = {
 			isa = PBXGroup;
 			children = (
-				77114DD01533D07700EF693C /* Appstagram */,
+				778B29FE1537E20600F31379 /* Common */,
+				77114DD01533D07700EF693C /* AppstagramSIMBL */,
+				77200C881537DFF800831670 /* Appstagram */,
 				77114DC91533D07700EF693C /* Frameworks */,
 				77114DC81533D07700EF693C /* Products */,
 			);
@@ -46,7 +96,8 @@
 		77114DC81533D07700EF693C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				77114DC71533D07700EF693C /* Appstagram.bundle */,
+				77114DC71533D07700EF693C /* AppstagramSIMBL.bundle */,
+				77200C851537DFF800831670 /* Appstagram.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,30 +121,70 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		77114DD01533D07700EF693C /* Appstagram */ = {
+		77114DD01533D07700EF693C /* AppstagramSIMBL */ = {
 			isa = PBXGroup;
 			children = (
+				77114DDC1533D0B200EF693C /* AppstagramSIMBL.h */,
+				778B2A231537E6C900F31379 /* NSWindow+AppstagramFilter.h */,
+				778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */,
+				77114DDD1533D0B200EF693C /* AppstagramSIMBL.m */,
 				77114DD11533D07700EF693C /* Supporting Files */,
 			);
+			name = AppstagramSIMBL;
 			path = Appstagram;
 			sourceTree = "<group>";
 		};
 		77114DD11533D07700EF693C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				77114DD21533D07700EF693C /* Appstagram-Info.plist */,
+				778B2A211537E49C00F31379 /* AppstagramSIMBL-Info.plist */,
 				77114DD31533D07700EF693C /* InfoPlist.strings */,
 				77114DD61533D07700EF693C /* Appstagram-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		77200C881537DFF800831670 /* Appstagram */ = {
+			isa = PBXGroup;
+			children = (
+				77200C971537DFF800831670 /* MainMenu.xib */,
+				778B29F51537E0FA00F31379 /* AppstagramDelegate.h */,
+				778B29F61537E0FA00F31379 /* AppstagramDelegate.m */,
+				77200C891537DFF800831670 /* Supporting Files */,
+			);
+			path = Appstagram;
+			sourceTree = "<group>";
+		};
+		77200C891537DFF800831670 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77200C8A1537DFF800831670 /* Appstagram-Info.plist */,
+				77200C8B1537DFF800831670 /* InfoPlist.strings */,
+				77200C8E1537DFF800831670 /* main.m */,
+				77200C901537DFF800831670 /* Appstagram-Prefix.pch */,
+				77200C911537DFF800831670 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		778B29FE1537E20600F31379 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				778B29FA1537E1FB00F31379 /* AppstagramCommon.h */,
+				778B2A261537E8E700F31379 /* AppstagramFilter.h */,
+				778B2A271537E8E700F31379 /* AppstagramFilter.m */,
+				778B29FB1537E1FB00F31379 /* AppstagramCommon.m */,
+				778B29F81537E10100F31379 /* CGSPrivate.h */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		77114DC61533D07700EF693C /* Appstagram */ = {
+		77114DC61533D07700EF693C /* AppstagramSIMBL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 77114DD91533D07700EF693C /* Build configuration list for PBXNativeTarget "Appstagram" */;
+			buildConfigurationList = 77114DD91533D07700EF693C /* Build configuration list for PBXNativeTarget "AppstagramSIMBL" */;
 			buildPhases = (
 				77114DC31533D07700EF693C /* Sources */,
 				77114DC41533D07700EF693C /* Frameworks */,
@@ -103,10 +194,28 @@
 			);
 			dependencies = (
 			);
+			name = AppstagramSIMBL;
+			productName = Appstagram;
+			productReference = 77114DC71533D07700EF693C /* AppstagramSIMBL.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		77200C841537DFF800831670 /* Appstagram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77200C9A1537DFF800831670 /* Build configuration list for PBXNativeTarget "Appstagram" */;
+			buildPhases = (
+				77200C811537DFF800831670 /* Sources */,
+				77200C821537DFF800831670 /* Frameworks */,
+				77200C831537DFF800831670 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				778B2A001537E30B00F31379 /* PBXTargetDependency */,
+			);
 			name = Appstagram;
 			productName = Appstagram;
-			productReference = 77114DC71533D07700EF693C /* Appstagram.bundle */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 77200C851537DFF800831670 /* Appstagram.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -114,7 +223,7 @@
 		77114DBE1533D07700EF693C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 77114DC11533D07700EF693C /* Build configuration list for PBXProject "Appstagram" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -128,7 +237,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				77114DC61533D07700EF693C /* Appstagram */,
+				77114DC61533D07700EF693C /* AppstagramSIMBL */,
+				77200C841537DFF800831670 /* Appstagram */,
 			);
 		};
 /* End PBXProject section */
@@ -142,6 +252,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		77200C831537DFF800831670 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77200C9D1537E08000831670 /* AppstagramSIMBL.bundle in Resources */,
+				77200C8D1537DFF800831670 /* InfoPlist.strings in Resources */,
+				77200C931537DFF800831670 /* Credits.rtf in Resources */,
+				77200C991537DFF800831670 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -149,10 +270,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77114DDE1533D0B200EF693C /* AppstagramSIMBL.m in Sources */,
+				778B29FD1537E20000F31379 /* AppstagramCommon.m in Sources */,
+				778B2A251537E6C900F31379 /* NSWindow+AppstagramFilter.m in Sources */,
+				778B2A281537E8E700F31379 /* AppstagramFilter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77200C811537DFF800831670 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77200C8F1537DFF800831670 /* main.m in Sources */,
+				778B29F71537E0FA00F31379 /* AppstagramDelegate.m in Sources */,
+				778B29FC1537E1FB00F31379 /* AppstagramCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		778B2A001537E30B00F31379 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77114DC61533D07700EF693C /* AppstagramSIMBL */;
+			targetProxy = 778B29FF1537E30B00F31379 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		77114DD31533D07700EF693C /* InfoPlist.strings */ = {
@@ -161,6 +304,30 @@
 				77114DD41533D07700EF693C /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		77200C8B1537DFF800831670 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77200C8C1537DFF800831670 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		77200C911537DFF800831670 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77200C921537DFF800831670 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		77200C971537DFF800831670 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77200C981537DFF800831670 /* en */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -216,9 +383,11 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appstagram/Appstagram-Prefix.pch";
-				INFOPLIST_FILE = "Appstagram/Appstagram-Info.plist";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = "Appstagram/AppstagramSIMBL-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -228,10 +397,34 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appstagram/Appstagram-Prefix.pch";
-				INFOPLIST_FILE = "Appstagram/Appstagram-Info.plist";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = "Appstagram/AppstagramSIMBL-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		77200C9B1537DFF800831670 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Appstagram/Appstagram-Prefix.pch";
+				INFOPLIST_FILE = "Appstagram/Appstagram-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		77200C9C1537DFF800831670 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Appstagram/Appstagram-Prefix.pch";
+				INFOPLIST_FILE = "Appstagram/Appstagram-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -247,13 +440,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		77114DD91533D07700EF693C /* Build configuration list for PBXNativeTarget "Appstagram" */ = {
+		77114DD91533D07700EF693C /* Build configuration list for PBXNativeTarget "AppstagramSIMBL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				77114DDA1533D07700EF693C /* Debug */,
 				77114DDB1533D07700EF693C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77200C9A1537DFF800831670 /* Build configuration list for PBXNativeTarget "Appstagram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77200C9B1537DFF800831670 /* Debug */,
+				77200C9C1537DFF800831670 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
