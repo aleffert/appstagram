@@ -21,6 +21,9 @@
 		778B29FD1537E20000F31379 /* AppstagramCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29FB1537E1FB00F31379 /* AppstagramCommon.m */; };
 		778B2A251537E6C900F31379 /* NSWindow+AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */; };
 		778B2A281537E8E700F31379 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
+		77AF4DD8153A0E3B002E01E2 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
+		77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
+		77AF4DDE153A1868002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,7 @@
 		778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+AppstagramFilter.m"; path = "Source/NSWindow+AppstagramFilter.m"; sourceTree = "<group>"; };
 		778B2A261537E8E700F31379 /* AppstagramFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramFilter.h; path = Appstagram/Source/AppstagramFilter.h; sourceTree = "<group>"; };
 		778B2A271537E8E700F31379 /* AppstagramFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramFilter.m; path = Appstagram/Source/AppstagramFilter.m; sourceTree = "<group>"; };
+		77AF4DDC153A1864002E01E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77114DCB1533D07700EF693C /* Cocoa.framework in Frameworks */,
+				77AF4DDE153A1868002E01E2 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */,
 				77200C871537DFF800831670 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +111,7 @@
 		77114DC91533D07700EF693C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77AF4DDC153A1864002E01E2 /* QuartzCore.framework */,
 				77114DCA1533D07700EF693C /* Cocoa.framework */,
 				77114DCC1533D07700EF693C /* Other Frameworks */,
 			);
@@ -125,9 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				77114DDC1533D0B200EF693C /* AppstagramSIMBL.h */,
+				77114DDD1533D0B200EF693C /* AppstagramSIMBL.m */,
 				778B2A231537E6C900F31379 /* NSWindow+AppstagramFilter.h */,
 				778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */,
-				77114DDD1533D0B200EF693C /* AppstagramSIMBL.m */,
 				77114DD11533D07700EF693C /* Supporting Files */,
 			);
 			name = AppstagramSIMBL;
@@ -171,9 +178,9 @@
 			isa = PBXGroup;
 			children = (
 				778B29FA1537E1FB00F31379 /* AppstagramCommon.h */,
+				778B29FB1537E1FB00F31379 /* AppstagramCommon.m */,
 				778B2A261537E8E700F31379 /* AppstagramFilter.h */,
 				778B2A271537E8E700F31379 /* AppstagramFilter.m */,
-				778B29FB1537E1FB00F31379 /* AppstagramCommon.m */,
 				778B29F81537E10100F31379 /* CGSPrivate.h */,
 			);
 			name = Common;
@@ -284,6 +291,7 @@
 				77200C8F1537DFF800831670 /* main.m in Sources */,
 				778B29F71537E0FA00F31379 /* AppstagramDelegate.m in Sources */,
 				778B29FC1537E1FB00F31379 /* AppstagramCommon.m in Sources */,
+				77AF4DD8153A0E3B002E01E2 /* AppstagramFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

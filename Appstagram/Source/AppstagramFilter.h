@@ -11,6 +11,9 @@
 @interface AppstagramFilter : NSObject
 
 + (AppstagramFilter*)filterNamed:(NSString*)name;
++ (NSArray*)filterNames;
+
++ (AppstagramFilter*)plainFilter;
 
 - (void)applyToWindow:(NSWindow*)window;
 - (void)removeFromWindow:(NSWindow*)window;

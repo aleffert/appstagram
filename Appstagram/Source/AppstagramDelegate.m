@@ -9,6 +9,7 @@
 #import "AppstagramDelegate.h"
 
 #import "AppstagramCommon.h"
+#import "AppstagramFilter.h"
 
 #import "CGSPrivate.h"
 
@@ -27,12 +28,13 @@
 
 - (void)makeFilterMenu {
     NSMenu* menu = [[[NSMenu alloc] init] autorelease];
-    [menu addItemWithTitle:@"Plain" action:@selector(choseItem:) keyEquivalent:@""];
-    [menu addItemWithTitle:@"Gray" action:@selector(choseItem:) keyEquivalent:@""];
-    [menu addItemWithTitle:@"Nostalgia" action:@selector(choseItem:) keyEquivalent:@""];
-    [menu addItemWithTitle:@"La Vie en Rose" action:@selector(choseItem:) keyEquivalent:@""];
+    NSArray* items = [AppstagramFilter filterNames];
+    for(NSString* item in items) {
+        [menu addItemWithTitle:item action:@selector(choseItem:) keyEquivalent:@""];
+    }
     
     [menu addItemWithTitle:@"Quit" action:@selector(quit:) keyEquivalent:@""];
+    
     self.filterMenu = menu;
 }
 

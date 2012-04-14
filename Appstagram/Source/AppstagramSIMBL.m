@@ -42,13 +42,16 @@ static AppstagramFilter* gCurrentFilter = nil;
 
 + (void)changeFilter:(NSNotification*)notification {
     NSString* filterName = [[notification userInfo] objectForKey:AppstagramFilterNameKey];
-    NSLog(@"setting filter named : %@,", filterName);
-    [gCurrentFilter release];
     AppstagramFilter* filter = [AppstagramFilter filterNamed:filterName];
-    gCurrentFilter = [filter retain];
-    for(NSWindow* window in [NSApplication sharedApplication].windows) {
-        NSLog(@"filtering window %@ with %@", window, filter);
-        [self setFilters:[NSArray arrayWithObject:filter] forWindow:window];
+    if(filter == nil) {
+        filter = [AppstagramFilter plainFilter];
+    }
+    if(![filter isEqual:gCurrentFilter]) {
+        [gCurrentFilter release];
+        gCurrentFilter = [filter retain];
+        for(NSWindow* window in [NSApplication sharedApplication].windows) {
+            [self setFilters:[NSArray arrayWithObject:filter] forWindow:window];
+        }
     }
 }
 
