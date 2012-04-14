@@ -92,21 +92,16 @@ typedef void (^Block)();
     CGSWindowFilterRef gloomFilter = NULL;
     CGSConnection connection = _CGSDefaultConnection();
     CGSNewCIFilterByName(connection, (CFStringRef)@"CISepiaTone", &sepiaFilter);
-    CGSNewCIFilterByName(connection, (CFStringRef)@"CIBloom", &gloomFilter);
 	CGSSetCIFilterValuesFromDictionary(connection, sepiaFilter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"inputIntensity"]);
-	CGSSetCIFilterValuesFromDictionary(connection, gloomFilter, (CFDictionaryRef)[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:10], @"inputRadius", [NSNumber numberWithInt:1], @"inputIntensity",nil]);
     
     result.applyBlock = ^(NSWindow* window) {
         CGSAddWindowFilter(connection, (int)window.windowNumber, sepiaFilter, 4);
-//        CGSAddWindowFilter(connection, (int)window.windowNumber, gloomFilter, 0);
     };
     result.removeBlock = ^(NSWindow* window) {
-        CGSRemoveWindowFilter(connection, (int)window.windowNumber, gloomFilter);
         CGSRemoveWindowFilter(connection, (int)window.windowNumber, sepiaFilter);
     };
     result.cleanupBlock = ^ {
         CGSReleaseCIFilter(connection, sepiaFilter);
-        CGSReleaseCIFilter(connection, gloomFilter);
     };
     
     return result;
