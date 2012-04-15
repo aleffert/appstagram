@@ -42,7 +42,8 @@
 {
     [self makeFilterMenu];
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    self.statusItem.title = @"Filter!";
+    self.statusItem.image = [NSImage imageNamed:@"menu-icon"];
+    self.statusItem.highlightMode = YES;
     self.statusItem.menu = self.filterMenu;
     
     CGSConnection connection = 0;

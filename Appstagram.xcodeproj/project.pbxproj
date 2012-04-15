@@ -21,6 +21,8 @@
 		778B29FD1537E20000F31379 /* AppstagramCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29FB1537E1FB00F31379 /* AppstagramCommon.m */; };
 		778B2A251537E6C900F31379 /* NSWindow+AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */; };
 		778B2A281537E8E700F31379 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
+		77956DA2153B7713007C8424 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 77956DA1153B7713007C8424 /* menu-icon.png */; };
+		77956DA5153B7852007C8424 /* menu-icon-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 77956DA4153B7852007C8424 /* menu-icon-selected.png */; };
 		77AF4DD8153A0E3B002E01E2 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
 		77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 		77AF4DDE153A1868002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
@@ -63,6 +65,8 @@
 		778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+AppstagramFilter.m"; path = "Source/NSWindow+AppstagramFilter.m"; sourceTree = "<group>"; };
 		778B2A261537E8E700F31379 /* AppstagramFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramFilter.h; path = Appstagram/Source/AppstagramFilter.h; sourceTree = "<group>"; };
 		778B2A271537E8E700F31379 /* AppstagramFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramFilter.m; path = Appstagram/Source/AppstagramFilter.m; sourceTree = "<group>"; };
+		77956DA1153B7713007C8424 /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon.png"; sourceTree = "<group>"; };
+		77956DA4153B7852007C8424 /* menu-icon-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon-selected.png"; sourceTree = "<group>"; };
 		77AF4DDC153A1864002E01E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -154,7 +158,6 @@
 		77200C881537DFF800831670 /* Appstagram */ = {
 			isa = PBXGroup;
 			children = (
-				77200C971537DFF800831670 /* MainMenu.xib */,
 				778B29F51537E0FA00F31379 /* AppstagramDelegate.h */,
 				778B29F61537E0FA00F31379 /* AppstagramDelegate.m */,
 				77200C891537DFF800831670 /* Supporting Files */,
@@ -165,6 +168,9 @@
 		77200C891537DFF800831670 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				77200C971537DFF800831670 /* MainMenu.xib */,
+				77956DA1153B7713007C8424 /* menu-icon.png */,
+				77956DA4153B7852007C8424 /* menu-icon-selected.png */,
 				77200C8A1537DFF800831670 /* Appstagram-Info.plist */,
 				77200C8B1537DFF800831670 /* InfoPlist.strings */,
 				77200C8E1537DFF800831670 /* main.m */,
@@ -267,6 +273,8 @@
 				77200C8D1537DFF800831670 /* InfoPlist.strings in Resources */,
 				77200C931537DFF800831670 /* Credits.rtf in Resources */,
 				77200C991537DFF800831670 /* MainMenu.xib in Resources */,
+				77956DA2153B7713007C8424 /* menu-icon.png in Resources */,
+				77956DA5153B7852007C8424 /* menu-icon-selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

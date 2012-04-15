@@ -88,20 +88,19 @@ typedef void (^Block)();
 
 + (AppstagramFilter*)sepiaFilter {
     AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
-    CGSWindowFilterRef sepiaFilter = NULL;
-    CGSWindowFilterRef gloomFilter = NULL;
+    CGSWindowFilterRef filter = NULL;
     CGSConnection connection = _CGSDefaultConnection();
-    CGSNewCIFilterByName(connection, (CFStringRef)@"CISepiaTone", &sepiaFilter);
-	CGSSetCIFilterValuesFromDictionary(connection, sepiaFilter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"inputIntensity"]);
+    CGSNewCIFilterByName(connection, (CFStringRef)@"CISepiaTone", &filter);
+	CGSSetCIFilterValuesFromDictionary(connection, filter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"inputIntensity"]);
     
     result.applyBlock = ^(NSWindow* window) {
-        CGSAddWindowFilter(connection, (int)window.windowNumber, sepiaFilter, 4);
+        CGSAddWindowFilter(connection, (int)window.windowNumber, filter, 4);
     };
     result.removeBlock = ^(NSWindow* window) {
-        CGSRemoveWindowFilter(connection, (int)window.windowNumber, sepiaFilter);
+        CGSRemoveWindowFilter(connection, (int)window.windowNumber, filter);
     };
     result.cleanupBlock = ^ {
-        CGSReleaseCIFilter(connection, sepiaFilter);
+        CGSReleaseCIFilter(connection, filter);
     };
     
     return result;
