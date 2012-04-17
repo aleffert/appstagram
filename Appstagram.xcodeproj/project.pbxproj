@@ -26,7 +26,6 @@
 		778B2A281537E8E700F31379 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
 		77956DA2153B7713007C8424 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 77956DA1153B7713007C8424 /* menu-icon.png */; };
 		77956DA5153B7852007C8424 /* menu-icon-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 77956DA4153B7852007C8424 /* menu-icon-selected.png */; };
-		77AF4DD8153A0E3B002E01E2 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
 		77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 		77AF4DDE153A1868002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -315,7 +314,6 @@
 				77200C8F1537DFF800831670 /* main.m in Sources */,
 				778B29F71537E0FA00F31379 /* AppstagramDelegate.m in Sources */,
 				778B29FC1537E1FB00F31379 /* AppstagramCommon.m in Sources */,
-				77AF4DD8153A0E3B002E01E2 /* AppstagramFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

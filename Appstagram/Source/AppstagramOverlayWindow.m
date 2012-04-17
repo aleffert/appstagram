@@ -42,6 +42,13 @@
     return self;
 }
 
+- (void)removeFromParent {
+    self.overlayView.image = nil;
+    self.parentWindow.appstagramOverlayWindow = nil;
+    [self.parentWindow removeChildWindow:self];
+    [self orderOut:nil];
+}
+
 - (void)sendEvent:(NSEvent *)theEvent {
     [self.parentWindow sendEvent:theEvent];
 }

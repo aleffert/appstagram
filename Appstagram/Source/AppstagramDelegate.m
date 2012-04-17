@@ -9,7 +9,6 @@
 #import "AppstagramDelegate.h"
 
 #import "AppstagramCommon.h"
-#import "AppstagramFilter.h"
 
 #import "CGSPrivate.h"
 
@@ -26,9 +25,13 @@
 @synthesize filterMenu = mFilterMenu;
 @synthesize statusItem = mStatusItem;
 
+- (NSArray*)filterNames {
+    return [NSArray arrayWithObjects:@"Boring", @"Ennui", @"Wistful", @"La Vie en Rose", @"Haze", @"Glow", nil];
+}
+
 - (void)makeFilterMenu {
     NSMenu* menu = [[[NSMenu alloc] init] autorelease];
-    NSArray* items = [AppstagramFilter filterNames];
+    NSArray* items = [self filterNames];
     for(NSString* item in items) {
         [menu addItemWithTitle:item action:@selector(choseItem:) keyEquivalent:@""];
     }

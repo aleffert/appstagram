@@ -38,26 +38,16 @@
     });
 }
 
-- (void)setFilters:(NSArray*)filters forWindow:(NSWindow*)window {
+- (void)setFilter:(AppstagramFilter*)filter forWindow:(NSWindow*)window {
     if(![window isKindOfClass:[AppstagramOverlayWindow class]]) {
-        AppstagramOverlayWindow* childWindow = window.appstagramOverlayWindow;
-        if(childWindow == nil) {
-            [[[AppstagramOverlayWindow alloc] initWithParentWindow:window] autorelease];
-        }
-        
-        NSMutableArray* filtersToApply = [NSMutableArray arrayWithArray:filters];
-        for(AppstagramFilter* filter in window.appstagramFilters) {
-            if([filters containsObject:filter]) {
-                [filtersToApply removeObject:filter];
-            }
-            else {
-                [filter removeFromWindow:window];
+        AppstagramFilter* currentFilter = window.appstagramFilter;
+        if(![currentFilter isEqual:filter]) {
+            @synchronized(self) {
+                [currentFilter removeFromWindow:window];
+                [filter applyToWindow:window];
+                window.appstagramFilter = filter;
             }
         }
-        for(AppstagramFilter* filter in filtersToApply) {
-            [filter applyToWindow:window];
-        }
-        window.appstagramFilters = filtersToApply;
     }
 }
 
@@ -68,7 +58,7 @@
         filter = [AppstagramFilter plainFilter];
     }
     for(NSWindow* window in windows) {
-        [self setFilters:[NSArray arrayWithObject:filter] forWindow:window];
+        [self setFilter:filter forWindow:window];
     }
     
 }

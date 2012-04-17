@@ -11,6 +11,7 @@
 @interface AppstagramOverlayWindow : NSWindow
 
 - (id)initWithParentWindow:(NSWindow*)window;
+- (void)removeFromParent;
 
 - (void)useOverlayImage:(NSImage*)image;
 

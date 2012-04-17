@@ -51,9 +51,7 @@ typedef void (^Block)();
     return filters;
 }
 
-+ (NSArray*)filterNames {
-    return [NSArray arrayWithObjects:@"Boring", @"Ennui", @"Wistful", @"La Vie en Rose", @"Haze", @"Glow", nil];
-}
+
 
 + (AppstagramFilter*)filterNamed:(NSString*)name {
     return [[self filterMap] objectForKey:name];
@@ -96,6 +94,11 @@ typedef void (^Block)();
 	CGSSetCIFilterValuesFromDictionary(connection, filter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"inputIntensity"]);
     
     result.applyBlock = ^(NSWindow* window) {
+        AppstagramOverlayWindow* childWindow = window.appstagramOverlayWindow;
+        if(childWindow == nil) {
+            [[[AppstagramOverlayWindow alloc] initWithParentWindow:window] autorelease];
+        }
+
         NSString* imagePath = [[NSBundle bundleForClass:[AppstagramFilter class]] pathForImageResource:@"sepia-overlay"];
         NSImage* overlay = [[[NSImage alloc] initWithContentsOfFile:imagePath] autorelease];
         CGSAddWindowFilter(connection, (int)window.windowNumber, filter, 4);
@@ -103,7 +106,7 @@ typedef void (^Block)();
     };
     result.removeBlock = ^(NSWindow* window) {
         CGSRemoveWindowFilter(connection, (int)window.windowNumber, filter);
-        [window.appstagramOverlayWindow useOverlayImage:nil];
+        [window.appstagramOverlayWindow removeFromParent];
     };
     result.cleanupBlock = ^ {
         CGSReleaseCIFilter(connection, filter);
