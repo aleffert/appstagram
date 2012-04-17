@@ -60,7 +60,8 @@
 
 - (void)useOverlayImage:(NSImage*)image {
     self.overlayView.image = image;
-    [self.contentView display];
+    [self.overlayView setNeedsDisplay:YES];
+    [self setFrame:self.parentWindow.frame display:YES];
 }
 
 @end
