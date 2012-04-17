@@ -10,7 +10,8 @@
 
 #import <objc/runtime.h>
 
-static const NSString* AppstagramFiltersKey;
+static const NSString* AppstagramFiltersKey = @"AppstagramFiltersKey";
+static const NSString* AppstagramOverlayWindowKey = @"AppstagramOverlayWindowKey";
 
 @implementation NSWindow (AppstagramFilter)
 
@@ -20,6 +21,14 @@ static const NSString* AppstagramFiltersKey;
 
 - (NSArray*)appstagramFilters {
     return objc_getAssociatedObject(self, AppstagramFiltersKey);
+}
+
+- (void)setAppstagramOverlayWindow:(AppstagramOverlayWindow *)overlayWindow {
+    objc_setAssociatedObject(self, AppstagramOverlayWindowKey, overlayWindow, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (AppstagramOverlayWindow*)appstagramOverlayWindow {
+    return objc_getAssociatedObject(self, AppstagramOverlayWindowKey);
 }
 
 @end

@@ -8,7 +8,9 @@
 
 #import "AppstagramFilter.h"
 
+#import "AppstagramOverlayWindow.h"
 #import "CGSPrivate.h"
+#import "NSWindow+AppstagramFilter.h"
 
 typedef void (^WindowBlock)(NSWindow* window);
 typedef void (^Block)();
@@ -94,10 +96,14 @@ typedef void (^Block)();
 	CGSSetCIFilterValuesFromDictionary(connection, filter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"inputIntensity"]);
     
     result.applyBlock = ^(NSWindow* window) {
+        NSString* imagePath = [[NSBundle bundleForClass:[AppstagramFilter class]] pathForImageResource:@"sepia-overlay"];
+        NSImage* overlay = [[[NSImage alloc] initWithContentsOfFile:imagePath] autorelease];
         CGSAddWindowFilter(connection, (int)window.windowNumber, filter, 4);
+        [window.appstagramOverlayWindow useOverlayImage:overlay];
     };
     result.removeBlock = ^(NSWindow* window) {
         CGSRemoveWindowFilter(connection, (int)window.windowNumber, filter);
+        [window.appstagramOverlayWindow useOverlayImage:nil];
     };
     result.cleanupBlock = ^ {
         CGSReleaseCIFilter(connection, filter);

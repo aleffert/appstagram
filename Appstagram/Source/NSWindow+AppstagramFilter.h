@@ -10,8 +10,11 @@
 
 #import "CGSPrivate.h"
 
+@class AppstagramOverlayWindow;
+
 @interface NSWindow (AppstagramFilter)
 
 @property (assign, nonatomic) NSArray* appstagramFilters;
+@property (retain, nonatomic) AppstagramOverlayWindow* appstagramOverlayWindow;
 
 @end

@@ -10,6 +10,7 @@
 
 #import "AppstagramCommon.h"
 #import "AppstagramFilter.h"
+#import "AppstagramOverlayWindow.h"
 #import "CGSPrivate.h"
 #import "NSWindow+AppstagramFilter.h"
 
@@ -33,6 +34,11 @@ static AppstagramFilter* gCurrentFilter = nil;
 }
 
 + (void)setFilters:(NSArray*)filters forWindow:(NSWindow*)window {
+    NSWindow* childWindow = window.appstagramOverlayWindow;
+    if(childWindow == nil) {
+        [[[AppstagramOverlayWindow alloc] initWithParentWindow:window] autorelease];
+    }
+    
     NSMutableArray* filtersToApply = [NSMutableArray arrayWithArray:filters];
     for(AppstagramFilter* filter in window.appstagramFilters) {
         if([filters containsObject:filter]) {
@@ -45,7 +51,7 @@ static AppstagramFilter* gCurrentFilter = nil;
     for(AppstagramFilter* filter in filtersToApply) {
         [filter applyToWindow:window];
     }
-    window.appstagramFilters = filters;
+    window.appstagramFilters = filtersToApply;
 }
 
 + (void)useFilterNamed:(NSString*)filterName forWindows:(NSArray*)windows {
@@ -71,9 +77,11 @@ static AppstagramFilter* gCurrentFilter = nil;
 
 + (void)windowUpdated:(NSNotification*)notification {
     NSWindow* window = notification.object;
-    NSString* filterName = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
-    if(window.appstagramFilters == nil && filterName != nil) {
-        [self useFilterNamed:filterName forWindows:[NSArray arrayWithObject:window]];
+    if(![window isKindOfClass:[AppstagramOverlayWindow class]]) {
+        NSString* filterName = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
+        if(window.appstagramFilters == nil && filterName != nil) {
+            [self useFilterNamed:filterName forWindows:[NSArray arrayWithObject:window]];
+        }
     }
 }
 
