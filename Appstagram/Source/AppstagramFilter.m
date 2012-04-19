@@ -26,7 +26,7 @@ typedef void (^Block)();
 + (AppstagramFilter*)roseFilter;
 + (AppstagramFilter*)blurFilter;
 + (AppstagramFilter*)glowFilter;
-+ (AppstagramFilter*)santaCruzFilter;
++ (AppstagramFilter*)bushwickFilter;
 
 @end
 
@@ -46,7 +46,7 @@ typedef void (^Block)();
                    [AppstagramFilter sepiaFilter], @"Shootout",
                    [AppstagramFilter roseFilter], @"La Vie en Rose",
                    [AppstagramFilter blurFilter], @"Haze",
-                   [AppstagramFilter santaCruzFilter], @"Bushwick",
+                   [AppstagramFilter bushwickFilter], @"Bushwick",
                    [AppstagramFilter glowFilter], @"Glow",
                    nil];
     });
@@ -187,10 +187,10 @@ typedef void (^Block)();
     return result;
 }
 
-+ (AppstagramFilter*)santaCruzFilter {
++ (AppstagramFilter*)bushwickFilter {
     __block AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
     result.applyBlock = ^(NSWindow* window) {
-        [result addOverlayImageNamed:@"santa-cruz-overlay" toWindow:window];
+        [result addOverlayImageNamed:@"bushwick-overlay" toWindow:window];
     };
     result.removeBlock = ^(NSWindow* window) {
         [result removeOverlayWindowFrom:window];
