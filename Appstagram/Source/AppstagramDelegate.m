@@ -84,8 +84,15 @@
     if(currentFilter == nil) {
         currentFilter = @"Plain";
     }
+    
+    BOOL foundItem;
+    
     for(NSMenuItem* item in menu.itemArray) {
         item.state = [currentFilter isEqualToString:item.title];
+        foundItem = foundItem || item.state;
+    }
+    if(!foundItem) {
+        [[menu.itemArray objectAtIndex:0] setState:NSOnState];
     }
 }
 
