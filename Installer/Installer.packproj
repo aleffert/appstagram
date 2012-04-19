@@ -50,9 +50,9 @@
 					<key>International</key>
 					<dict>
 						<key>Mode</key>
-						<integer>0</integer>
+						<integer>1</integer>
 						<key>Path</key>
-						<string></string>
+						<string>/Users/aleffert/Documents/Projects/appstagram/Installer/intro.txt</string>
 						<key>Path Type</key>
 						<integer>1</integer>
 					</dict>
@@ -605,6 +605,8 @@
 		<true/>
 		<key>Remove .pbdevelopment</key>
 		<true/>
+		<key>Remove CVS</key>
+		<false/>
 	</dict>
 </dict>
 </plist>
