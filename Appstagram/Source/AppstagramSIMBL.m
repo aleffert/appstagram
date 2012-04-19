@@ -16,6 +16,7 @@
 
 @interface AppstagramSIMBL ()
 - (void)useFilterNamed:(NSString*)filterName;
+- (void)sendFilterAnnouncement;
 @end
 
 @implementation AppstagramSIMBL
@@ -31,11 +32,20 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(windowUpdated:) name:NSWindowDidUpdateNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(windowUpdated:) name:NSWindowDidBecomeMainNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(becameFrontApp:) name:NSApplicationDidBecomeActiveNotification object:nil];
         
         NSString* filterName = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
         [controller useFilterNamed:filterName];
+        [self sendFilterAnnouncement];
 
     });
+}
+
+- (void)sendFilterAnnouncement {
+    NSString* currentFilter = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
+    NSString* bundleId = [[NSRunningApplication currentApplication] bundleIdentifier];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:currentFilter forKey:AppstagramFilterNameKey];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramFilterAnnouncementNotification object:bundleId userInfo:userInfo];
 }
 
 - (void)setFilter:(AppstagramFilter*)filter forWindow:(NSWindow*)window {
@@ -49,6 +59,10 @@
             }
         }
     }
+}
+
+- (void)becameFrontApp:(NSNotification*)notification {
+    [self sendFilterAnnouncement];
 }
 
 - (void)useFilterNamed:(NSString*)filterName forWindows:(NSArray*)windows {

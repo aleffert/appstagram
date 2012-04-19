@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppstagramDelegate : NSObject <NSApplicationDelegate>
+@interface AppstagramDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @end

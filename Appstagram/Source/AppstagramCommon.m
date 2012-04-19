@@ -8,6 +8,7 @@
 
 #import "AppstagramCommon.h"
 
+NSString* AppstagramFilterAnnouncementNotification = @"AppstagramFilterAnnouncementNotification";
 NSString* AppstagramChangedNotification = @"AppstagramChangedNotification";
 
 NSString* AppstagramFilterNameKey = @"AppstagramFilterNameKey";

@@ -8,5 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString* AppstagramFilterAnnouncementNotification;
 extern NSString* AppstagramChangedNotification;
 extern NSString* AppstagramFilterNameKey;
