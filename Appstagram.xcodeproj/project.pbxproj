@@ -25,9 +25,10 @@
 		778B2A251537E6C900F31379 /* NSWindow+AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A241537E6C900F31379 /* NSWindow+AppstagramFilter.m */; };
 		778B2A281537E8E700F31379 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
 		77956DA2153B7713007C8424 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 77956DA1153B7713007C8424 /* menu-icon.png */; };
-		77956DA5153B7852007C8424 /* menu-icon-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 77956DA4153B7852007C8424 /* menu-icon-selected.png */; };
 		77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 		77AF4DDE153A1868002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
+		77ED2020153E792E00F77082 /* rose-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ED201F153E792E00F77082 /* rose-overlay.png */; };
+		77ED2022153FCAB700F77082 /* santa-cruz-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ED2021153FCAB700F77082 /* santa-cruz-overlay.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +74,9 @@
 		778B2A261537E8E700F31379 /* AppstagramFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramFilter.h; path = Appstagram/Source/AppstagramFilter.h; sourceTree = "<group>"; };
 		778B2A271537E8E700F31379 /* AppstagramFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramFilter.m; path = Appstagram/Source/AppstagramFilter.m; sourceTree = "<group>"; };
 		77956DA1153B7713007C8424 /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon.png"; sourceTree = "<group>"; };
-		77956DA4153B7852007C8424 /* menu-icon-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon-selected.png"; sourceTree = "<group>"; };
 		77AF4DDC153A1864002E01E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		77ED201F153E792E00F77082 /* rose-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rose-overlay.png"; sourceTree = SOURCE_ROOT; };
+		77ED2021153FCAB700F77082 /* santa-cruz-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "santa-cruz-overlay.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,8 +181,9 @@
 			children = (
 				77200C971537DFF800831670 /* MainMenu.xib */,
 				771E4951153D229B00B6410D /* sepia-overlay.png */,
+				77ED201F153E792E00F77082 /* rose-overlay.png */,
+				77ED2021153FCAB700F77082 /* santa-cruz-overlay.png */,
 				77956DA1153B7713007C8424 /* menu-icon.png */,
-				77956DA4153B7852007C8424 /* menu-icon-selected.png */,
 				77200C8A1537DFF800831670 /* Appstagram-Info.plist */,
 				77200C8B1537DFF800831670 /* InfoPlist.strings */,
 				77200C8E1537DFF800831670 /* main.m */,
@@ -275,6 +278,8 @@
 			files = (
 				77114DD51533D07700EF693C /* InfoPlist.strings in Resources */,
 				771E4952153D229B00B6410D /* sepia-overlay.png in Resources */,
+				77ED2020153E792E00F77082 /* rose-overlay.png in Resources */,
+				77ED2022153FCAB700F77082 /* santa-cruz-overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +292,6 @@
 				77200C931537DFF800831670 /* Credits.rtf in Resources */,
 				77200C991537DFF800831670 /* MainMenu.xib in Resources */,
 				77956DA2153B7713007C8424 /* menu-icon.png in Resources */,
-				77956DA5153B7852007C8424 /* menu-icon-selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
