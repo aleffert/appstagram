@@ -18,6 +18,7 @@
 @property (retain, nonatomic) NSMutableDictionary* filterMap;
 @property (retain, nonatomic) NSMenu* filterMenu;
 @property (retain, nonatomic) NSStatusItem* statusItem;
+@property (retain, nonatomic) NSMenuItem* openOnLoginItem;
 
 @end
 
@@ -25,6 +26,7 @@
 
 @synthesize filterMap = mFilterMap;
 @synthesize filterMenu = mFilterMenu;
+@synthesize openOnLoginItem = mOpenOnLoginItem;
 @synthesize statusItem = mStatusItem;
 
 - (NSArray*)filterNames {
@@ -37,6 +39,9 @@
     for(NSString* item in items) {
         [menu addItemWithTitle:item action:@selector(choseItem:) keyEquivalent:@""];
     }
+    [menu addItem:[NSMenuItem separatorItem]];
+    [menu addItemWithTitle:@"Open on Login" action:@selector(toggleOpenOnLogin:) keyEquivalent:@""];
+    self.openOnLoginItem = [menu.itemArray lastObject];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(quit:) keyEquivalent:@""];
     
@@ -79,6 +84,82 @@
     [[NSApplication sharedApplication] terminate:self];
 }
 
+
+// Cribbed from http://stackoverflow.com/questions/815063/how-do-you-make-your-app-open-at-login
+
+- (NSURL *)appURL
+{
+    return [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
+}
+
+- (BOOL) willStartAtLogin
+{
+    NSURL* itemURL = [self appURL];
+    Boolean foundIt=false;
+    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    if (loginItems) {
+        UInt32 seed = 0U;
+        NSArray *currentLoginItems = [NSMakeCollectable(LSSharedFileListCopySnapshot(loginItems, &seed)) autorelease];
+        for (id itemObject in currentLoginItems) {
+            LSSharedFileListItemRef item = (LSSharedFileListItemRef)itemObject;
+            
+            UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
+            CFURLRef URL = NULL;
+            OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, /*outRef*/ NULL);
+            if (err == noErr) {
+                foundIt = CFEqual(URL, itemURL);
+                CFRelease(URL);
+                
+                if (foundIt)
+                    break;
+            }
+        }
+        CFRelease(loginItems);
+    }
+    return (BOOL)foundIt;
+}
+
+- (void) setStartAtLogin:(BOOL)enabled
+{
+    NSURL* itemURL = [self appURL];
+    LSSharedFileListItemRef existingItem = NULL;
+    
+    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    if (loginItems) {
+        UInt32 seed = 0U;
+        NSArray *currentLoginItems = [NSMakeCollectable(LSSharedFileListCopySnapshot(loginItems, &seed)) autorelease];
+        for (id itemObject in currentLoginItems) {
+            LSSharedFileListItemRef item = (LSSharedFileListItemRef)itemObject;
+            
+            UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
+            CFURLRef URL = NULL;
+            OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, /*outRef*/ NULL);
+            if (err == noErr) {
+                Boolean foundIt = CFEqual(URL, itemURL);
+                CFRelease(URL);
+                
+                if (foundIt) {
+                    existingItem = item;
+                    break;
+                }
+            }
+        }
+        
+        if (enabled && (existingItem == NULL)) {
+            LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst,
+                                          NULL, NULL, (CFURLRef)itemURL, NULL, NULL);
+            
+        } else if (!enabled && (existingItem != NULL))
+            LSSharedFileListItemRemove(loginItems, existingItem);
+        
+        CFRelease(loginItems);
+    }       
+}
+
+- (void)toggleOpenOnLogin:(id)sender {
+    [self setStartAtLogin:![self willStartAtLogin]];
+}
+
 - (void)menuNeedsUpdate:(NSMenu *)menu {
     NSString* currentFilter = [self.filterMap objectForKey:[self frontApplicationBundleId]];
     if(currentFilter == nil) {
@@ -94,6 +175,8 @@
     if(!foundItem) {
         [[menu.itemArray objectAtIndex:0] setState:NSOnState];
     }
+    
+    self.openOnLoginItem.state = [self willStartAtLogin];
 }
 
 @end
