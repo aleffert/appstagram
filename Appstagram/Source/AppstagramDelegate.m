@@ -20,6 +20,8 @@
 @property (retain, nonatomic) NSStatusItem* statusItem;
 @property (retain, nonatomic) NSMenuItem* openOnLoginItem;
 
+- (void)setStartAtLogin:(BOOL)enabled;
+
 - (void)installComponentsIfNecessary;
 
 @end
@@ -43,6 +45,7 @@
     }
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Open on Login" action:@selector(toggleOpenOnLogin:) keyEquivalent:@""];
+    [menu addItemWithTitle:@"Uninstall…" action:@selector(uninstall:) keyEquivalent:@""];
     self.openOnLoginItem = [menu.itemArray lastObject];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(quit:) keyEquivalent:@""];
@@ -76,8 +79,20 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *applicationSupportDirectory = [paths objectAtIndex:0];
     NSString* SIMBLPluginsPath = [[applicationSupportDirectory stringByAppendingPathComponent:@"SIMBL"] stringByAppendingPathComponent:@"Plugins"];
+    NSError* error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtPath:SIMBLPluginsPath withIntermediateDirectories:YES attributes:nil error:&error];
+    if(error != nil) {
+        [[NSAlert alertWithError:error] runModal];
+    }
+    
+    
     NSString* pluginPath = [SIMBLPluginsPath stringByAppendingPathComponent:@"AppstagramSIMBL.bundle"];
     return pluginPath;
+}
+
+- (NSString*)SIMBLUninstallerPath {
+    
+    return [[NSBundle mainBundle] pathForResource:@"SIMBL Uninstaller" ofType:@"app"];
 }
 
 - (BOOL)isPluginInstalled {
@@ -91,6 +106,31 @@
         NSAlert* alert = [NSAlert alertWithError:error];
         [alert runModal];
     }
+}
+
+- (void)uninstallSIMBL {
+    [[NSWorkspace sharedWorkspace] openFile:[self SIMBLUninstallerPath]];
+}
+
+- (void)uninstallPlugin {
+    NSError* error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:[self pluginDestinationPath] error:&error];
+    if(error != nil) {
+        [[NSAlert alertWithError:error] runModal];
+    }
+}
+
+- (void)uninstall:(id)sender {
+    NSAlert* alert = [NSAlert alertWithMessageText:@"Are you sure you want to uninstall Appstagram?" defaultButton:@"Uninstall" alternateButton:@"Cancel" otherButton:@"Uninstall SIMBL too" informativeTextWithFormat:@"You will need to log out and log back in for the changes to take effect."];
+    NSInteger result = [alert runModal];
+    if(result == NSAlertAlternateReturn || result == NSAlertDefaultReturn) {
+        [self setStartAtLogin:NO];
+        [self uninstallPlugin];
+    }
+    if(result == NSAlertOtherReturn) {
+        [self uninstallSIMBL];
+    }
+    [[NSApplication sharedApplication] terminate:self];
 }
 
 - (void)installPluginIfNecessary {
@@ -110,7 +150,7 @@
 }
 
 - (void)askToInstallSIMBL {
-    NSAlert* alert = [NSAlert alertWithMessageText:@"Appstagram needs to install SIMBL (http://www.culater.net/software/SIMBL/SIMBL.php) to work properly. Do you want to install SIMBL now? Once you do that, you will need to log out, log back in, and reopen Appstagram for the changes to take effect." defaultButton:@"Install SIMBL" alternateButton:@"Quit" otherButton:nil informativeTextWithFormat:@""];
+    NSAlert* alert = [NSAlert alertWithMessageText:@"Appstagram needs to install SIMBL to work properly. Do you want to install SIMBL now? Once you do that, you will need to log out, log back in, and reopen Appstagram for the changes to take effect." defaultButton:@"Install SIMBL" alternateButton:@"Quit" otherButton:nil informativeTextWithFormat:@"For more information about SIMBL see http://www.culater.net/software/SIMBL/SIMBL.php"];
     NSInteger result = [alert runModal];
     if(result == NSAlertDefaultReturn) {
         [self installSIMBL];
