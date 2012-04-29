@@ -110,7 +110,7 @@
 }
 
 - (void)askToInstallSIMBL {
-    NSAlert* alert = [NSAlert alertWithMessageText:@"Appstagram needs to install SIMBL (http://www.culater.net/software/SIMBL/SIMBL.php) to work. Do you want to install SIMBL now? Once you do that, you will need to log out, log back in, and reopen Appstagram for the changes to take effect." defaultButton:@"OK" alternateButton:@"Quit" otherButton:nil informativeTextWithFormat:@""];
+    NSAlert* alert = [NSAlert alertWithMessageText:@"Appstagram needs to install SIMBL (http://www.culater.net/software/SIMBL/SIMBL.php) to work properly. Do you want to install SIMBL now? Once you do that, you will need to log out, log back in, and reopen Appstagram for the changes to take effect." defaultButton:@"Install SIMBL" alternateButton:@"Quit" otherButton:nil informativeTextWithFormat:@""];
     NSInteger result = [alert runModal];
     if(result == NSAlertDefaultReturn) {
         [self installSIMBL];
