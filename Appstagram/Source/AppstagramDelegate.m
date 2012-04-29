@@ -20,6 +20,8 @@
 @property (retain, nonatomic) NSStatusItem* statusItem;
 @property (retain, nonatomic) NSMenuItem* openOnLoginItem;
 
+- (void)installComponentsIfNecessary;
+
 @end
 
 @implementation AppstagramDelegate
@@ -61,7 +63,72 @@
     CGSConnection connection = 0;
     CGSNewConnection(NULL, &connection);
     
+    [self installComponentsIfNecessary];
+    
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(filterAnnouncement:) name:AppstagramFilterAnnouncementNotification object:nil];
+}
+
+- (NSString*)pluginSourcePath {
+    return [[NSBundle mainBundle] pathForResource:@"AppstagramSIMBL" ofType:@"bundle"];
+}
+
+- (NSString*)pluginDestinationPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [paths objectAtIndex:0];
+    NSString* SIMBLPluginsPath = [[applicationSupportDirectory stringByAppendingPathComponent:@"SIMBL"] stringByAppendingPathComponent:@"Plugins"];
+    NSString* pluginPath = [SIMBLPluginsPath stringByAppendingPathComponent:@"AppstagramSIMBL.bundle"];
+    return pluginPath;
+}
+
+- (BOOL)isPluginInstalled {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[self pluginDestinationPath]];
+}
+
+- (void)installPlugin {
+    NSError* error = nil;
+    [[NSFileManager defaultManager] copyItemAtPath:[self pluginSourcePath] toPath:[self pluginDestinationPath] error:&error];
+    if(error != nil) {
+        NSAlert* alert = [NSAlert alertWithError:error];
+        [alert runModal];
+    }
+}
+
+- (void)installPluginIfNecessary {
+    if(![self isPluginInstalled]) {
+        [self installPlugin];
+    }
+}
+
+- (BOOL)isSIMBLInstalled {
+    return [[NSFileManager defaultManager] fileExistsAtPath:@"/Library/ScriptingAdditions/SIMBL.osax"];
+}
+
+- (void)installSIMBL {
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"SIMBL" ofType:@"pkg"];
+    [[NSWorkspace sharedWorkspace] openFile:path];
+    [[NSApplication sharedApplication] terminate:self];
+}
+
+- (void)askToInstallSIMBL {
+    NSAlert* alert = [NSAlert alertWithMessageText:@"Appstagram needs to install SIMBL (http://www.culater.net/software/SIMBL/SIMBL.php) to work. Do you want to install SIMBL now? Once you do that, you will need to log out, log back in, and reopen Appstagram for the changes to take effect." defaultButton:@"OK" alternateButton:@"Quit" otherButton:nil informativeTextWithFormat:@""];
+    NSInteger result = [alert runModal];
+    if(result == NSAlertDefaultReturn) {
+        [self installSIMBL];
+    }
+    else {
+        [[NSApplication sharedApplication] terminate:self];
+    }
+}
+
+- (void)installSIMBLIfNecessary {
+    if(![self isSIMBLInstalled]) {
+        [self askToInstallSIMBL];
+    }
+}
+
+- (void)installComponentsIfNecessary {
+    [self installPluginIfNecessary];
+    [self installSIMBLIfNecessary];
 }
 
 - (void)filterAnnouncement:(NSNotification*)notification {

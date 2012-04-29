@@ -26,6 +26,7 @@
 		778B2A281537E8E700F31379 /* AppstagramFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B2A271537E8E700F31379 /* AppstagramFilter.m */; };
 		77956DA2153B7713007C8424 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 77956DA1153B7713007C8424 /* menu-icon.png */; };
 		779F9EDF154C68D000BAAC1A /* appstagram.icns in Resources */ = {isa = PBXBuildFile; fileRef = 779F9EDE154C68D000BAAC1A /* appstagram.icns */; };
+		779F9EE2154CB20D00BAAC1A /* SIMBL.pkg in Resources */ = {isa = PBXBuildFile; fileRef = 779F9EE1154CB20D00BAAC1A /* SIMBL.pkg */; };
 		77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 		77AF4DDE153A1868002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 		77ED2020153E792E00F77082 /* rose-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ED201F153E792E00F77082 /* rose-overlay.png */; };
@@ -76,6 +77,7 @@
 		778B2A271537E8E700F31379 /* AppstagramFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramFilter.m; path = Appstagram/Source/AppstagramFilter.m; sourceTree = "<group>"; };
 		77956DA1153B7713007C8424 /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-icon.png"; sourceTree = "<group>"; };
 		779F9EDE154C68D000BAAC1A /* appstagram.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appstagram.icns; sourceTree = "<group>"; };
+		779F9EE1154CB20D00BAAC1A /* SIMBL.pkg */ = {isa = PBXFileReference; lastKnownFileType = file; path = SIMBL.pkg; sourceTree = SOURCE_ROOT; };
 		77AF4DDC153A1864002E01E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		77ED201F153E792E00F77082 /* rose-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rose-overlay.png"; sourceTree = SOURCE_ROOT; };
 		77ED2021153FCAB700F77082 /* bushwick-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bushwick-overlay.png"; sourceTree = SOURCE_ROOT; };
@@ -110,7 +112,6 @@
 				77114DD01533D07700EF693C /* AppstagramSIMBL */,
 				77200C881537DFF800831670 /* Appstagram */,
 				77114DC91533D07700EF693C /* Frameworks */,
-				77114DC81533D07700EF693C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +127,7 @@
 		77114DC91533D07700EF693C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77114DC81533D07700EF693C /* Products */,
 				77AF4DDC153A1864002E01E2 /* QuartzCore.framework */,
 				77114DCA1533D07700EF693C /* Cocoa.framework */,
 				77114DCC1533D07700EF693C /* Other Frameworks */,
@@ -161,6 +163,7 @@
 		77114DD11533D07700EF693C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				779F9EE1154CB20D00BAAC1A /* SIMBL.pkg */,
 				778B2A211537E49C00F31379 /* AppstagramSIMBL-Info.plist */,
 				77114DD31533D07700EF693C /* InfoPlist.strings */,
 				77114DD61533D07700EF693C /* Appstagram-Prefix.pch */,
@@ -296,6 +299,7 @@
 				77200C991537DFF800831670 /* MainMenu.xib in Resources */,
 				77956DA2153B7713007C8424 /* menu-icon.png in Resources */,
 				779F9EDF154C68D000BAAC1A /* appstagram.icns in Resources */,
+				779F9EE2154CB20D00BAAC1A /* SIMBL.pkg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

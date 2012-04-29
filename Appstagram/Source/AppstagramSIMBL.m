@@ -36,16 +36,18 @@
         
         NSString* filterName = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
         [controller useFilterNamed:filterName];
-        [self sendFilterAnnouncement];
+        [controller sendFilterAnnouncement];
 
     });
 }
 
 - (void)sendFilterAnnouncement {
     NSString* currentFilter = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
-    NSString* bundleId = [[NSRunningApplication currentApplication] bundleIdentifier];
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:currentFilter forKey:AppstagramFilterNameKey];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramFilterAnnouncementNotification object:bundleId userInfo:userInfo];
+    if(currentFilter != nil) {
+        NSString* bundleId = [[NSRunningApplication currentApplication] bundleIdentifier];
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:currentFilter forKey:AppstagramFilterNameKey];
+        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramFilterAnnouncementNotification object:bundleId userInfo:userInfo];
+    }
 }
 
 - (void)setFilter:(AppstagramFilter*)filter forWindow:(NSWindow*)window {
