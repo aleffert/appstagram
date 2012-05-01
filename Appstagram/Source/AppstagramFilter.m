@@ -25,6 +25,7 @@ typedef void (^Block)();
 + (AppstagramFilter*)sepiaFilter;
 + (AppstagramFilter*)roseFilter;
 + (AppstagramFilter*)blurFilter;
++ (AppstagramFilter*)paperFilter;
 + (AppstagramFilter*)glowFilter;
 + (AppstagramFilter*)bushwickFilter;
 
@@ -46,6 +47,7 @@ typedef void (^Block)();
                    [AppstagramFilter sepiaFilter], @"Shootout",
                    [AppstagramFilter roseFilter], @"La Vie en Rose",
                    [AppstagramFilter blurFilter], @"Haze",
+                   [AppstagramFilter paperFilter], @"Wastebasket",
                    [AppstagramFilter bushwickFilter], @"Bushwick",
                    [AppstagramFilter glowFilter], @"Glow",
                    nil];
@@ -120,6 +122,28 @@ typedef void (^Block)();
     };
     result.cleanupBlock = ^ {
         CGSReleaseCIFilter(connection, filter);
+    };
+    
+    return result;
+}
+
++ (AppstagramFilter*)paperFilter {
+    __block AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
+//    CGSWindowFilterRef filter = NULL;
+//    CGSConnection connection = _CGSDefaultConnection();
+//    CGSNewCIFilterByName(connection, (CFStringRef)@"CISepiaTone", &filter);
+//	CGSSetCIFilterValuesFromDictionary(connection, filter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"inputIntensity"]);
+    
+    result.applyBlock = ^(NSWindow* window) {
+        [result addOverlayImageNamed:@"paper-overlay" toWindow:window];
+//        CGSAddWindowFilter(connection, (int)window.windowNumber, filter, 4);
+    };
+    result.removeBlock = ^(NSWindow* window) {
+//        CGSRemoveWindowFilter(connection, (int)window.windowNumber, filter);
+        [result removeOverlayWindowFrom:window];
+    };
+    result.cleanupBlock = ^ {
+//        CGSReleaseCIFilter(connection, filter);
     };
     
     return result;

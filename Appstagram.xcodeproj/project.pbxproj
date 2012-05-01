@@ -18,6 +18,7 @@
 		77200C991537DFF800831670 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77200C971537DFF800831670 /* MainMenu.xib */; };
 		77200C9D1537E08000831670 /* AppstagramSIMBL.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77114DC71533D07700EF693C /* AppstagramSIMBL.bundle */; };
 		77548169153D1FC80073A599 /* AppstagramFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77548168153D1FC80073A599 /* AppstagramFilterView.m */; };
+		777B8C37154F7FAA00F8C04F /* paper-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 777B8C36154F7FAA00F8C04F /* paper-overlay.png */; };
 		7781450C153D12A10049EEAE /* AppstagramOverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781450B153D12A10049EEAE /* AppstagramOverlayWindow.m */; };
 		778B29F71537E0FA00F31379 /* AppstagramDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29F61537E0FA00F31379 /* AppstagramDelegate.m */; };
 		778B29FC1537E1FB00F31379 /* AppstagramCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29FB1537E1FB00F31379 /* AppstagramCommon.m */; };
@@ -64,6 +65,7 @@
 		77200C981537DFF800831670 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		77548167153D1FC80073A599 /* AppstagramFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramFilterView.h; path = Appstagram/Source/AppstagramFilterView.h; sourceTree = "<group>"; };
 		77548168153D1FC80073A599 /* AppstagramFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramFilterView.m; path = Appstagram/Source/AppstagramFilterView.m; sourceTree = "<group>"; };
+		777B8C36154F7FAA00F8C04F /* paper-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper-overlay.png"; sourceTree = SOURCE_ROOT; };
 		7781450A153D12A10049EEAE /* AppstagramOverlayWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramOverlayWindow.h; path = Source/AppstagramOverlayWindow.h; sourceTree = "<group>"; };
 		7781450B153D12A10049EEAE /* AppstagramOverlayWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramOverlayWindow.m; path = Source/AppstagramOverlayWindow.m; sourceTree = "<group>"; };
 		778B29F51537E0FA00F31379 /* AppstagramDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramDelegate.h; path = Source/AppstagramDelegate.h; sourceTree = "<group>"; };
@@ -165,6 +167,10 @@
 		77114DD11533D07700EF693C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				771E4951153D229B00B6410D /* sepia-overlay.png */,
+				777B8C36154F7FAA00F8C04F /* paper-overlay.png */,
+				77ED201F153E792E00F77082 /* rose-overlay.png */,
+				77ED2021153FCAB700F77082 /* bushwick-overlay.png */,
 				778B2A211537E49C00F31379 /* AppstagramSIMBL-Info.plist */,
 				77114DD31533D07700EF693C /* InfoPlist.strings */,
 				77114DD61533D07700EF693C /* Appstagram-Prefix.pch */,
@@ -189,9 +195,6 @@
 				779F9EE3154CC99200BAAC1A /* SIMBL Uninstaller.app */,
 				779F9EDE154C68D000BAAC1A /* appstagram.icns */,
 				77200C971537DFF800831670 /* MainMenu.xib */,
-				771E4951153D229B00B6410D /* sepia-overlay.png */,
-				77ED201F153E792E00F77082 /* rose-overlay.png */,
-				77ED2021153FCAB700F77082 /* bushwick-overlay.png */,
 				77956DA1153B7713007C8424 /* menu-icon.png */,
 				77200C8A1537DFF800831670 /* Appstagram-Info.plist */,
 				77200C8B1537DFF800831670 /* InfoPlist.strings */,
@@ -289,6 +292,7 @@
 				771E4952153D229B00B6410D /* sepia-overlay.png in Resources */,
 				77ED2020153E792E00F77082 /* rose-overlay.png in Resources */,
 				77ED2022153FCAB700F77082 /* bushwick-overlay.png in Resources */,
+				777B8C37154F7FAA00F8C04F /* paper-overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

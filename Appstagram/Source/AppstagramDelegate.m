@@ -34,7 +34,7 @@
 @synthesize statusItem = mStatusItem;
 
 - (NSArray*)filterNames {
-    return [NSArray arrayWithObjects:@"Boring", @"Ennui", @"Shootout", @"La Vie en Rose", @"Haze", @"Glow", @"Bushwick", nil];
+    return [NSArray arrayWithObjects:@"Boring", @"Ennui", @"Shootout", @"La Vie en Rose", @"Haze", @"Wastebasket", @"Glow", @"Bushwick", nil];
 }
 
 - (void)makeFilterMenu {
