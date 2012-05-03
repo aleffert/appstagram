@@ -12,6 +12,7 @@
 
 #import "CGSPrivate.h"
 
+NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 
 @interface AppstagramDelegate ()
 
@@ -45,8 +46,8 @@
     }
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Open on Login" action:@selector(toggleOpenOnLogin:) keyEquivalent:@""];
-    [menu addItemWithTitle:@"Uninstall…" action:@selector(uninstall:) keyEquivalent:@""];
     self.openOnLoginItem = [menu.itemArray lastObject];
+    [menu addItemWithTitle:@"Uninstall…" action:@selector(uninstall:) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(quit:) keyEquivalent:@""];
     
@@ -75,10 +76,8 @@
     return [[NSBundle mainBundle] pathForResource:@"AppstagramSIMBL" ofType:@"bundle"];
 }
 
-- (NSString*)pluginDestinationPath {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *applicationSupportDirectory = [paths objectAtIndex:0];
-    NSString* SIMBLPluginsPath = [[applicationSupportDirectory stringByAppendingPathComponent:@"SIMBL"] stringByAppendingPathComponent:@"Plugins"];
+- (NSString*)pluginDestinationPathFromApplicationSupport:(NSString*)appSupportPath {
+    NSString* SIMBLPluginsPath = [[appSupportPath stringByAppendingPathComponent:@"SIMBL"] stringByAppendingPathComponent:@"Plugins"];
     NSError* error = nil;
     [[NSFileManager defaultManager] createDirectoryAtPath:SIMBLPluginsPath withIntermediateDirectories:YES attributes:nil error:&error];
     if(error != nil) {
@@ -88,6 +87,13 @@
     
     NSString* pluginPath = [SIMBLPluginsPath stringByAppendingPathComponent:@"AppstagramSIMBL.bundle"];
     return pluginPath;
+
+}
+
+- (NSString*)pluginDestinationPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [paths objectAtIndex:0];
+    return [self pluginDestinationPathFromApplicationSupport:applicationSupportDirectory];
 }
 
 - (NSString*)SIMBLUninstallerPath {
@@ -95,17 +101,57 @@
     return [[NSBundle mainBundle] pathForResource:@"SIMBL Uninstaller" ofType:@"app"];
 }
 
-- (BOOL)isPluginInstalled {
-    return [[NSFileManager defaultManager] fileExistsAtPath:[self pluginDestinationPath]];
+- (BOOL)isPluginInstalledAtPath:(NSString*)path {
+    return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
 
-- (void)installPlugin {
+- (BOOL)isPluginInstalled {
+    return [self isPluginInstalledAtPath:[self pluginDestinationPath]];
+}
+
+- (NSString*)sandboxPath:(NSString*)bundleId {
+    
+    NSString* path = [[NSString stringWithFormat:@"~/Library/Containers/%@", bundleId] stringByExpandingTildeInPath];
+    return path;
+}
+
+- (NSString*)pluginDestinationInSandbox:(NSString*)bundleId {
+    NSString* sandboxPath = [self sandboxPath:bundleId];
+    NSString* dataPath = [sandboxPath stringByAppendingPathComponent:@"Data"];
+    NSString* libraryPath = [dataPath stringByAppendingPathComponent:@"Library"];
+    NSString* appSupportPath = [libraryPath stringByAppendingPathComponent:@"Application Support"];
+    return [self pluginDestinationPathFromApplicationSupport:appSupportPath];
+}
+
+- (BOOL)isPluginInstalledInSandbox:(NSString*)bundleId {
+    return [self isPluginInstalledAtPath:[self pluginDestinationInSandbox:bundleId]];
+}
+
+- (void)installPluginAtPath:(NSString*)path {
     NSError* error = nil;
-    [[NSFileManager defaultManager] copyItemAtPath:[self pluginSourcePath] toPath:[self pluginDestinationPath] error:&error];
+    [[NSFileManager defaultManager] copyItemAtPath:[self pluginSourcePath] toPath:path error:&error];
     if(error != nil) {
         NSAlert* alert = [NSAlert alertWithError:error];
         [alert runModal];
     }
+}
+
+- (void)addSandboxToInstallationList:(NSString*)bundleId {
+    NSArray* array = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramAffectedSandboxesKey];
+    if(array == nil) {
+        array = [NSArray array];
+    }
+    NSArray* newObjects = [array arrayByAddingObject:bundleId];
+    [[NSUserDefaults standardUserDefaults] setObject:newObjects forKey:AppstagramAffectedSandboxesKey];
+}
+
+- (void)installPluginInSandbox:(NSString*)bundle {
+    [self installPluginAtPath:[self pluginDestinationInSandbox:bundle]];
+    [self addSandboxToInstallationList:bundle];
+}
+
+- (void)installPlugin {
+    [self installPluginAtPath:[self pluginDestinationPath]];
 }
 
 - (void)uninstallSIMBL {
@@ -117,6 +163,10 @@
     [[NSFileManager defaultManager] removeItemAtPath:[self pluginDestinationPath] error:&error];
     if(error != nil) {
         [[NSAlert alertWithError:error] runModal];
+    }
+    NSArray* affectedSandboxes = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramAffectedSandboxesKey];
+    for(NSString* bundleId in affectedSandboxes) {
+        [[NSFileManager defaultManager] removeItemAtPath:[self pluginDestinationInSandbox:bundleId] error:NULL];
     }
 }
 
@@ -181,10 +231,34 @@
     return [[[NSWorkspace sharedWorkspace] frontmostApplication] bundleIdentifier];
 }
 
+- (NSString*)frontApplicationName {
+    return [[[NSWorkspace sharedWorkspace] frontmostApplication] localizedName];
+}
+
+- (BOOL)isAppSandboxed:(NSString*)bundleId {;
+    NSString* path = [self sandboxPath:bundleId];
+    return [[NSFileManager defaultManager] fileExistsAtPath:path];
+}
+
+- (void)attemptToInstallInSandboxedApp:(NSString*)bundleId named:(NSString*)name {
+    NSString* message = [NSString stringWithFormat:@"%@ is a sandboxed app, so we're going to have to install something special to make Appstagram work. Is that okay?", name];
+    NSAlert* alert = [NSAlert alertWithMessageText:message defaultButton:@"Install" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"You will need to quit and reopen the app for the changes to take affect."];
+    NSUInteger result =[alert runModal];
+    if(result == NSAlertDefaultReturn) {
+        [self installPluginInSandbox:bundleId];
+    }
+}
+
 - (void)choseItem:(NSMenuItem*)item {
     NSString* bundleId = [self frontApplicationBundleId];
-    [self.filterMap setObject:item.title forKey:bundleId];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramChangedNotification object:bundleId userInfo:[NSDictionary dictionaryWithObject:item.title forKey:AppstagramFilterNameKey]];    
+    NSString* name = [self frontApplicationName];
+    if([self isAppSandboxed:bundleId] && ![self isPluginInstalledInSandbox:bundleId]) {
+        [self attemptToInstallInSandboxedApp:bundleId named:name];
+    }
+    else {
+        [self.filterMap setObject:item.title forKey:bundleId];
+        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramChangedNotification object:bundleId userInfo:[NSDictionary dictionaryWithObject:item.title forKey:AppstagramFilterNameKey]];
+    }
 }
 
 - (void)quit:(NSMenuItem*)sender {
