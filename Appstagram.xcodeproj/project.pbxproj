@@ -29,6 +29,7 @@
 		779F9EDF154C68D000BAAC1A /* appstagram.icns in Resources */ = {isa = PBXBuildFile; fileRef = 779F9EDE154C68D000BAAC1A /* appstagram.icns */; };
 		779F9EE2154CB20D00BAAC1A /* SIMBL.pkg in Resources */ = {isa = PBXBuildFile; fileRef = 779F9EE1154CB20D00BAAC1A /* SIMBL.pkg */; };
 		779F9EE4154CC99200BAAC1A /* SIMBL Uninstaller.app in Resources */ = {isa = PBXBuildFile; fileRef = 779F9EE3154CC99200BAAC1A /* SIMBL Uninstaller.app */; };
+		77A3B13E15535EA000B8B446 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A3B13D15535EA000B8B446 /* ScriptingBridge.framework */; };
 		77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 		77AF4DDE153A1868002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 		77ED2020153E792E00F77082 /* rose-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ED201F153E792E00F77082 /* rose-overlay.png */; };
@@ -82,6 +83,7 @@
 		779F9EDE154C68D000BAAC1A /* appstagram.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appstagram.icns; sourceTree = "<group>"; };
 		779F9EE1154CB20D00BAAC1A /* SIMBL.pkg */ = {isa = PBXFileReference; lastKnownFileType = file; path = SIMBL.pkg; sourceTree = SOURCE_ROOT; };
 		779F9EE3154CC99200BAAC1A /* SIMBL Uninstaller.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "SIMBL Uninstaller.app"; sourceTree = SOURCE_ROOT; };
+		77A3B13D15535EA000B8B446 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		77AF4DDC153A1864002E01E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		77ED201F153E792E00F77082 /* rose-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rose-overlay.png"; sourceTree = SOURCE_ROOT; };
 		77ED2021153FCAB700F77082 /* bushwick-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bushwick-overlay.png"; sourceTree = SOURCE_ROOT; };
@@ -101,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77A3B13E15535EA000B8B446 /* ScriptingBridge.framework in Frameworks */,
 				77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */,
 				77200C871537DFF800831670 /* Cocoa.framework in Frameworks */,
 			);
@@ -133,6 +136,7 @@
 			children = (
 				77114DC81533D07700EF693C /* Products */,
 				77AF4DDC153A1864002E01E2 /* QuartzCore.framework */,
+				77A3B13D15535EA000B8B446 /* ScriptingBridge.framework */,
 				77114DCA1533D07700EF693C /* Cocoa.framework */,
 				77114DCC1533D07700EF693C /* Other Frameworks */,
 			);

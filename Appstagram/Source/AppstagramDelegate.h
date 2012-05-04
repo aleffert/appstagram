@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ScriptingBridge/ScriptingBridge.h>
 
 @interface AppstagramDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 

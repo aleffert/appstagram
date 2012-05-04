@@ -76,6 +76,10 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     return [[NSBundle mainBundle] pathForResource:@"AppstagramSIMBL" ofType:@"bundle"];
 }
 
+- (NSString*)bundleName {
+    return @"AppstagramSIMBL.bundle";
+}
+
 - (NSString*)pluginDestinationPathFromApplicationSupport:(NSString*)appSupportPath {
     NSString* SIMBLPluginsPath = [[appSupportPath stringByAppendingPathComponent:@"SIMBL"] stringByAppendingPathComponent:@"Plugins"];
     NSError* error = nil;
@@ -85,7 +89,7 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     }
     
     
-    NSString* pluginPath = [SIMBLPluginsPath stringByAppendingPathComponent:@"AppstagramSIMBL.bundle"];
+    NSString* pluginPath = [SIMBLPluginsPath stringByAppendingPathComponent:[self bundleName]];
     return pluginPath;
 
 }
@@ -231,34 +235,52 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     return [[[NSWorkspace sharedWorkspace] frontmostApplication] bundleIdentifier];
 }
 
-- (NSString*)frontApplicationName {
-    return [[[NSWorkspace sharedWorkspace] frontmostApplication] localizedName];
-}
-
 - (BOOL)isAppSandboxed:(NSString*)bundleId {;
     NSString* path = [self sandboxPath:bundleId];
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
 
-- (void)attemptToInstallInSandboxedApp:(NSString*)bundleId named:(NSString*)name {
-    NSString* message = [NSString stringWithFormat:@"%@ is a sandboxed app, so we're going to have to install something special to make Appstagram work. Is that okay?", name];
-    NSAlert* alert = [NSAlert alertWithMessageText:message defaultButton:@"Install" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"You will need to quit and reopen the app for the changes to take affect."];
-    NSUInteger result =[alert runModal];
-    if(result == NSAlertDefaultReturn) {
-        [self installPluginInSandbox:bundleId];
+- (void)attemptToInstallInSandboxedApp:(NSString*)bundleId named:(NSString*)name pid:(pid_t)pid {
+    [self installPluginInSandbox:bundleId];
+    
+    // Taken from SIMBL Agent. Kick off the injection
+    SBApplication* app = [SBApplication applicationWithProcessIdentifier:pid];
+    
+    
+	AEEventID eventID = 'load';
+    
+    [app setSendMode:kAEWaitReply | kAENeverInteract | kAEDontRecord];
+	id initReply = [app sendEvent:kASAppleScriptSuite id:kGetAEUT parameters:0];
+    if(initReply != nil) {
+        NSLog(@"appstagram got init reply: %@", initReply);
+    }
+    
+	// the reply here is of some unknown type - it is not an Objective-C object
+	// as near as I can tell because trying to print it using "%@" or getting its
+	// class both cause the application to segfault. The pointer value always seems
+	// to be 0x10000 which is a bit fishy. It does not seem to be an AEDesc struct
+	// either.
+	// since we are waiting for a reply, it seems like this object might need to
+	// be released - but i don't know what it is or how to release it.
+	// NSLog(@"initReply: %p '%64.64s'", initReply, (char*)initReply);
+	
+	// Inject!
+	[app setSendMode:kAENoReply | kAENeverInteract | kAEDontRecord];
+	id injectReply = [app sendEvent:'SIMe' id:eventID parameters:0];
+    
+    if(injectReply != nil) {
+        NSLog(@"appstagram got inject reply: %@", injectReply);
     }
 }
 
 - (void)choseItem:(NSMenuItem*)item {
-    NSString* bundleId = [self frontApplicationBundleId];
-    NSString* name = [self frontApplicationName];
+    NSRunningApplication* application = [[NSWorkspace sharedWorkspace] frontmostApplication];
+    NSString* bundleId = application.bundleIdentifier;
     if([self isAppSandboxed:bundleId] && ![self isPluginInstalledInSandbox:bundleId]) {
-        [self attemptToInstallInSandboxedApp:bundleId named:name];
+        [self attemptToInstallInSandboxedApp:bundleId named:application.localizedName pid:application.processIdentifier];
     }
-    else {
-        [self.filterMap setObject:item.title forKey:bundleId];
-        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramChangedNotification object:bundleId userInfo:[NSDictionary dictionaryWithObject:item.title forKey:AppstagramFilterNameKey]];
-    }
+    [self.filterMap setObject:item.title forKey:bundleId];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramChangedNotification object:bundleId userInfo:[NSDictionary dictionaryWithObject:item.title forKey:AppstagramFilterNameKey]];
 }
 
 - (void)quit:(NSMenuItem*)sender {
