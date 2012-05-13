@@ -17,6 +17,7 @@
 		77200C931537DFF800831670 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 77200C911537DFF800831670 /* Credits.rtf */; };
 		77200C991537DFF800831670 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77200C971537DFF800831670 /* MainMenu.xib */; };
 		77200C9D1537E08000831670 /* AppstagramSIMBL.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77114DC71533D07700EF693C /* AppstagramSIMBL.bundle */; };
+		773B9390156014CD00C75B2A /* sun-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 773B938F156014CD00C75B2A /* sun-overlay.png */; };
 		77548169153D1FC80073A599 /* AppstagramFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77548168153D1FC80073A599 /* AppstagramFilterView.m */; };
 		777B8C37154F7FAA00F8C04F /* paper-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 777B8C36154F7FAA00F8C04F /* paper-overlay.png */; };
 		7781450C153D12A10049EEAE /* AppstagramOverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781450B153D12A10049EEAE /* AppstagramOverlayWindow.m */; };
@@ -32,8 +33,9 @@
 		77A3B13E15535EA000B8B446 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A3B13D15535EA000B8B446 /* ScriptingBridge.framework */; };
 		77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
 		77AF4DDE153A1868002E01E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AF4DDC153A1864002E01E2 /* QuartzCore.framework */; };
+		77EA0ACD1560247600C17657 /* peach-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 77EA0ACC1560247600C17657 /* peach-overlay.png */; };
 		77ED2020153E792E00F77082 /* rose-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ED201F153E792E00F77082 /* rose-overlay.png */; };
-		77ED2022153FCAB700F77082 /* bushwick-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ED2021153FCAB700F77082 /* bushwick-overlay.png */; };
+		77ED2022153FCAB700F77082 /* bluered-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 77ED2021153FCAB700F77082 /* bluered-overlay.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,7 @@
 		77200C901537DFF800831670 /* Appstagram-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appstagram-Prefix.pch"; sourceTree = "<group>"; };
 		77200C921537DFF800831670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		77200C981537DFF800831670 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		773B938F156014CD00C75B2A /* sun-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sun-overlay.png"; sourceTree = SOURCE_ROOT; };
 		77548167153D1FC80073A599 /* AppstagramFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramFilterView.h; path = Appstagram/Source/AppstagramFilterView.h; sourceTree = "<group>"; };
 		77548168153D1FC80073A599 /* AppstagramFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramFilterView.m; path = Appstagram/Source/AppstagramFilterView.m; sourceTree = "<group>"; };
 		777B8C36154F7FAA00F8C04F /* paper-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper-overlay.png"; sourceTree = SOURCE_ROOT; };
@@ -85,8 +88,9 @@
 		779F9EE3154CC99200BAAC1A /* SIMBL Uninstaller.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "SIMBL Uninstaller.app"; sourceTree = SOURCE_ROOT; };
 		77A3B13D15535EA000B8B446 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		77AF4DDC153A1864002E01E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		77EA0ACC1560247600C17657 /* peach-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peach-overlay.png"; sourceTree = SOURCE_ROOT; };
 		77ED201F153E792E00F77082 /* rose-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rose-overlay.png"; sourceTree = SOURCE_ROOT; };
-		77ED2021153FCAB700F77082 /* bushwick-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bushwick-overlay.png"; sourceTree = SOURCE_ROOT; };
+		77ED2021153FCAB700F77082 /* bluered-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluered-overlay.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +178,9 @@
 				771E4951153D229B00B6410D /* sepia-overlay.png */,
 				777B8C36154F7FAA00F8C04F /* paper-overlay.png */,
 				77ED201F153E792E00F77082 /* rose-overlay.png */,
-				77ED2021153FCAB700F77082 /* bushwick-overlay.png */,
+				77ED2021153FCAB700F77082 /* bluered-overlay.png */,
+				773B938F156014CD00C75B2A /* sun-overlay.png */,
+				77EA0ACC1560247600C17657 /* peach-overlay.png */,
 				778B2A211537E49C00F31379 /* AppstagramSIMBL-Info.plist */,
 				77114DD31533D07700EF693C /* InfoPlist.strings */,
 				77114DD61533D07700EF693C /* Appstagram-Prefix.pch */,
@@ -295,8 +301,10 @@
 				77114DD51533D07700EF693C /* InfoPlist.strings in Resources */,
 				771E4952153D229B00B6410D /* sepia-overlay.png in Resources */,
 				77ED2020153E792E00F77082 /* rose-overlay.png in Resources */,
-				77ED2022153FCAB700F77082 /* bushwick-overlay.png in Resources */,
+				77ED2022153FCAB700F77082 /* bluered-overlay.png in Resources */,
 				777B8C37154F7FAA00F8C04F /* paper-overlay.png in Resources */,
+				773B9390156014CD00C75B2A /* sun-overlay.png in Resources */,
+				77EA0ACD1560247600C17657 /* peach-overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,7 +27,10 @@ typedef void (^Block)();
 + (AppstagramFilter*)blurFilter;
 + (AppstagramFilter*)paperFilter;
 + (AppstagramFilter*)glowFilter;
-+ (AppstagramFilter*)bushwickFilter;
++ (AppstagramFilter*)blueRedFilter;
++ (AppstagramFilter*)sunFilter;
++ (AppstagramFilter*)vibranceFilter;
++ (AppstagramFilter*)peachFilter;
 
 @end
 
@@ -48,8 +51,11 @@ typedef void (^Block)();
                    [AppstagramFilter roseFilter], @"La Vie en Rose",
                    [AppstagramFilter blurFilter], @"Haze",
                    [AppstagramFilter paperFilter], @"Wastebasket",
-                   [AppstagramFilter bushwickFilter], @"Bushwick",
+                   [AppstagramFilter blueRedFilter], @"Roebling",
                    [AppstagramFilter glowFilter], @"Glow",
+                   [AppstagramFilter sunFilter], @"Apollo",
+                   [AppstagramFilter vibranceFilter], @"Spring",
+                   [AppstagramFilter peachFilter], @"Cobb",
                    nil];
     });
     return filters;
@@ -129,21 +135,13 @@ typedef void (^Block)();
 
 + (AppstagramFilter*)paperFilter {
     __block AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
-//    CGSWindowFilterRef filter = NULL;
-//    CGSConnection connection = _CGSDefaultConnection();
-//    CGSNewCIFilterByName(connection, (CFStringRef)@"CISepiaTone", &filter);
-//	CGSSetCIFilterValuesFromDictionary(connection, filter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"inputIntensity"]);
-    
     result.applyBlock = ^(NSWindow* window) {
         [result addOverlayImageNamed:@"paper-overlay" toWindow:window];
-//        CGSAddWindowFilter(connection, (int)window.windowNumber, filter, 4);
     };
     result.removeBlock = ^(NSWindow* window) {
-//        CGSRemoveWindowFilter(connection, (int)window.windowNumber, filter);
         [result removeOverlayWindowFrom:window];
     };
     result.cleanupBlock = ^ {
-//        CGSReleaseCIFilter(connection, filter);
     };
     
     return result;
@@ -211,10 +209,61 @@ typedef void (^Block)();
     return result;
 }
 
-+ (AppstagramFilter*)bushwickFilter {
++ (AppstagramFilter*)blueRedFilter {
     __block AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
     result.applyBlock = ^(NSWindow* window) {
-        [result addOverlayImageNamed:@"bushwick-overlay" toWindow:window];
+        [result addOverlayImageNamed:@"bluered-overlay" toWindow:window];
+    };
+    result.removeBlock = ^(NSWindow* window) {
+        [result removeOverlayWindowFrom:window];
+    };
+    result.cleanupBlock = ^ {
+    };
+    
+    return result;
+}
+
++ (AppstagramFilter*)sunFilter {
+    __block AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
+    result.applyBlock = ^(NSWindow* window) {
+        [result addOverlayImageNamed:@"sun-overlay" toWindow:window];
+    };
+    result.removeBlock = ^(NSWindow* window) {
+        [result removeOverlayWindowFrom:window];
+    };
+    result.cleanupBlock = ^ {
+    };
+    
+    return result;
+}
+
+
++ (AppstagramFilter*)vibranceFilter {
+    AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
+    CGSWindowFilterRef filter = NULL;
+    CGSConnection connection = _CGSDefaultConnection();
+    CGSNewCIFilterByName(connection, (CFStringRef)@"CIVibrance", &filter);
+    CGSSetCIFilterValuesFromDictionary(connection, filter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"inputAmount"]);
+    
+    result.applyBlock = ^(NSWindow* window) {
+        CGSAddWindowFilter(connection, (int)window.windowNumber, filter, 2);
+    };
+    result.removeBlock = ^(NSWindow* window) {
+        CGSRemoveWindowFilter(connection, (int)window.windowNumber, filter);
+    };
+    result.cleanupBlock = ^ {
+        CGSReleaseCIFilter(connection, filter);
+    };
+
+    
+    return result;
+}
+
++ (AppstagramFilter*)peachFilter {
+    
+    __block AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
+    result.applyBlock = ^(NSWindow* window) {
+        [result addOverlayImageNamed:@"peach-overlay" toWindow:window];
     };
     result.removeBlock = ^(NSWindow* window) {
         [result removeOverlayWindowFrom:window];
