@@ -177,14 +177,14 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 - (void)uninstall:(id)sender {
     NSAlert* alert = [NSAlert alertWithMessageText:@"Are you sure you want to uninstall Appstagram?" defaultButton:@"Uninstall" alternateButton:@"Cancel" otherButton:@"Uninstall SIMBL too" informativeTextWithFormat:@"You will need to log out and log back in for the changes to take effect."];
     NSInteger result = [alert runModal];
-    if(result == NSAlertAlternateReturn || result == NSAlertDefaultReturn) {
-        [self setStartAtLogin:NO];
-        [self uninstallPlugin];
-    }
     if(result == NSAlertOtherReturn) {
         [self uninstallSIMBL];
     }
-    [[NSApplication sharedApplication] terminate:self];
+    if(result == NSAlertAlternateReturn || result == NSAlertDefaultReturn) {
+        [self setStartAtLogin:NO];
+        [self uninstallPlugin];
+        [[NSApplication sharedApplication] terminate:self];
+    }
 }
 
 - (void)installPluginIfNecessary {
