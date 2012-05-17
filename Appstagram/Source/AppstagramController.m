@@ -1,12 +1,12 @@
 //
-//  AppstagramSIMBL.m
+//  AppstagramController.m
 //  Appstagram
 //
 //  Created by Akiva Leffert on 4/9/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "AppstagramSIMBL.h"
+#import "AppstagramController.h"
 
 #import "AppstagramCommon.h"
 #import "AppstagramFilter.h"
@@ -14,20 +14,29 @@
 #import "CGSPrivate.h"
 #import "NSWindow+AppstagramFilter.h"
 
-@interface AppstagramSIMBL ()
+@interface AppstagramController ()
 - (void)useFilterNamed:(NSString*)filterName;
 - (void)sendFilterAnnouncement;
 @end
 
-@implementation AppstagramSIMBL
+OSErr InjectAppstagram(const AppleEvent *ev, AppleEvent *reply, long refcon);
+
+OSErr InjectAppstagram(const AppleEvent *ev, AppleEvent *reply, long refcon)
+{
+    OSErr resultCode = noErr;
+    [AppstagramController load];
+	return resultCode;
+}
+
+@implementation AppstagramController
 
 + (void)load
 {
     static dispatch_once_t onceToken;
-    static AppstagramSIMBL* controller = nil;
+    static AppstagramController* controller = nil;
     dispatch_once(&onceToken, ^{
         NSLog(@"Loaded appstagram into %@", [[NSRunningApplication currentApplication] bundleIdentifier]);
-        controller = [[AppstagramSIMBL alloc] init];
+        controller = [[AppstagramController alloc] init];
         [[NSDistributedNotificationCenter defaultCenter] addObserver:controller selector:@selector(changeFilter:) name:AppstagramChangedNotification object:[[NSRunningApplication currentApplication] bundleIdentifier]];
         
         [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(windowUpdated:) name:NSWindowDidUpdateNotification object:nil];

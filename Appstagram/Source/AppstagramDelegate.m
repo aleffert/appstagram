@@ -69,40 +69,26 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     
     [self installComponentsIfNecessary];
     
+    for(NSRunningApplication* application in [[NSWorkspace sharedWorkspace] runningApplications]) {
+        [self injectIntoApp:application.bundleIdentifier named:application.localizedName pid:application.processIdentifier];
+    }
+    
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(filterAnnouncement:) name:AppstagramFilterAnnouncementNotification object:nil];
+    
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appOpened:) name:NSWorkspaceDidLaunchApplicationNotification object:nil];
+}
+
+- (void)appOpened:(NSNotification*)notification {
+    NSRunningApplication* app = [notification.userInfo objectForKey:NSWorkspaceApplicationKey];
+    [self injectIntoApp:app.bundleIdentifier named:app.localizedName pid:app.processIdentifier];
 }
 
 - (NSString*)pluginSourcePath {
-    return [[NSBundle mainBundle] pathForResource:@"AppstagramSIMBL" ofType:@"bundle"];
-}
-
-- (NSString*)bundleName {
-    return @"AppstagramSIMBL.bundle";
-}
-
-- (NSString*)pluginDestinationPathFromApplicationSupport:(NSString*)appSupportPath {
-    NSString* SIMBLPluginsPath = [[appSupportPath stringByAppendingPathComponent:@"SIMBL"] stringByAppendingPathComponent:@"Plugins"];
-    NSError* error = nil;
-    [[NSFileManager defaultManager] createDirectoryAtPath:SIMBLPluginsPath withIntermediateDirectories:YES attributes:nil error:&error];
-    if(error != nil) {
-        [[NSAlert alertWithError:error] runModal];
-    }
-    
-    
-    NSString* pluginPath = [SIMBLPluginsPath stringByAppendingPathComponent:[self bundleName]];
-    return pluginPath;
-
+    return [[NSBundle mainBundle] pathForResource:@"AppstagramOSAX" ofType:@"bundle"];
 }
 
 - (NSString*)pluginDestinationPath {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *applicationSupportDirectory = [paths objectAtIndex:0];
-    return [self pluginDestinationPathFromApplicationSupport:applicationSupportDirectory];
-}
-
-- (NSString*)SIMBLUninstallerPath {
-    
-    return [[NSBundle mainBundle] pathForResource:@"SIMBL Uninstaller" ofType:@"app"];
+    return @"/Library/ScriptingAdditions/AppstagramOSAX.osax";
 }
 
 - (BOOL)isPluginInstalledAtPath:(NSString*)path {
@@ -113,74 +99,18 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     return [self isPluginInstalledAtPath:[self pluginDestinationPath]];
 }
 
-- (NSString*)sandboxPath:(NSString*)bundleId {
-    
-    NSString* path = [[NSString stringWithFormat:@"~/Library/Containers/%@", bundleId] stringByExpandingTildeInPath];
-    return path;
-}
-
-- (NSString*)pluginDestinationInSandbox:(NSString*)bundleId {
-    NSString* sandboxPath = [self sandboxPath:bundleId];
-    NSString* dataPath = [sandboxPath stringByAppendingPathComponent:@"Data"];
-    NSString* libraryPath = [dataPath stringByAppendingPathComponent:@"Library"];
-    NSString* appSupportPath = [libraryPath stringByAppendingPathComponent:@"Application Support"];
-    return [self pluginDestinationPathFromApplicationSupport:appSupportPath];
-}
-
-- (BOOL)isPluginInstalledInSandbox:(NSString*)bundleId {
-    return [self isPluginInstalledAtPath:[self pluginDestinationInSandbox:bundleId]];
-}
-
-- (void)installPluginAtPath:(NSString*)path {
-    NSError* error = nil;
-    [[NSFileManager defaultManager] copyItemAtPath:[self pluginSourcePath] toPath:path error:&error];
-    if(error != nil) {
-        NSAlert* alert = [NSAlert alertWithError:error];
-        [alert runModal];
-    }
-}
-
-- (void)addSandboxToInstallationList:(NSString*)bundleId {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramAffectedSandboxesKey];
-    if(array == nil) {
-        array = [NSArray array];
-    }
-    NSArray* newObjects = [array arrayByAddingObject:bundleId];
-    [[NSUserDefaults standardUserDefaults] setObject:newObjects forKey:AppstagramAffectedSandboxesKey];
-}
-
-- (void)installPluginInSandbox:(NSString*)bundle {
-    [self installPluginAtPath:[self pluginDestinationInSandbox:bundle]];
-    [self addSandboxToInstallationList:bundle];
-}
-
 - (void)installPlugin {
-    [self installPluginAtPath:[self pluginDestinationPath]];
-}
-
-- (void)uninstallSIMBL {
-    [[NSWorkspace sharedWorkspace] openFile:[self SIMBLUninstallerPath]];
+    // TODO spawn installer
 }
 
 - (void)uninstallPlugin {
-    NSError* error = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:[self pluginDestinationPath] error:&error];
-    if(error != nil) {
-        [[NSAlert alertWithError:error] runModal];
-    }
-    NSArray* affectedSandboxes = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramAffectedSandboxesKey];
-    for(NSString* bundleId in affectedSandboxes) {
-        [[NSFileManager defaultManager] removeItemAtPath:[self pluginDestinationInSandbox:bundleId] error:NULL];
-    }
+    // TODO spawn uninstaller
 }
 
 - (void)uninstall:(id)sender {
-    NSAlert* alert = [NSAlert alertWithMessageText:@"Are you sure you want to uninstall Appstagram?" defaultButton:@"Uninstall" alternateButton:@"Cancel" otherButton:@"Uninstall SIMBL too" informativeTextWithFormat:@"You will need to log out and log back in for the changes to take effect."];
+    NSAlert* alert = [NSAlert alertWithMessageText:@"Are you sure you want to uninstall Appstagram?" defaultButton:@"Uninstall" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"You will need to log out and log back in for the changes to take effect."];
     NSInteger result = [alert runModal];
-    if(result == NSAlertOtherReturn) {
-        [self uninstallSIMBL];
-    }
-    if(result == NSAlertAlternateReturn || result == NSAlertDefaultReturn) {
+    if(result == NSAlertDefaultReturn) {
         [self setStartAtLogin:NO];
         [self uninstallPlugin];
         [[NSApplication sharedApplication] terminate:self];
@@ -193,36 +123,8 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     }
 }
 
-- (BOOL)isSIMBLInstalled {
-    return [[NSFileManager defaultManager] fileExistsAtPath:@"/Library/ScriptingAdditions/SIMBL.osax"];
-}
-
-- (void)installSIMBL {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"SIMBL" ofType:@"pkg"];
-    [[NSWorkspace sharedWorkspace] openFile:path];
-    [[NSApplication sharedApplication] terminate:self];
-}
-
-- (void)askToInstallSIMBL {
-    NSAlert* alert = [NSAlert alertWithMessageText:@"Appstagram needs to install SIMBL to work properly. Do you want to install SIMBL now? Once you do that, you will need to log out, log back in, and reopen Appstagram for the changes to take effect." defaultButton:@"Install SIMBL" alternateButton:@"Quit" otherButton:nil informativeTextWithFormat:@"For more information about SIMBL see http://www.culater.net/software/SIMBL/SIMBL.php"];
-    NSInteger result = [alert runModal];
-    if(result == NSAlertDefaultReturn) {
-        [self installSIMBL];
-    }
-    else {
-        [[NSApplication sharedApplication] terminate:self];
-    }
-}
-
-- (void)installSIMBLIfNecessary {
-    if(![self isSIMBLInstalled]) {
-        [self askToInstallSIMBL];
-    }
-}
-
 - (void)installComponentsIfNecessary {
     [self installPluginIfNecessary];
-    [self installSIMBLIfNecessary];
 }
 
 - (void)filterAnnouncement:(NSNotification*)notification {
@@ -235,38 +137,26 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     return [[[NSWorkspace sharedWorkspace] frontmostApplication] bundleIdentifier];
 }
 
-- (BOOL)isAppSandboxed:(NSString*)bundleId {;
-    NSString* path = [self sandboxPath:bundleId];
-    return [[NSFileManager defaultManager] fileExistsAtPath:path];
-}
-
-- (void)attemptToInstallInSandboxedApp:(NSString*)bundleId named:(NSString*)name pid:(pid_t)pid {
-    [self installPluginInSandbox:bundleId];
-    
+- (void)injectIntoApp:(NSString*)bundleId named:(NSString*)name pid:(pid_t)pid {
+    if(pid == [NSRunningApplication currentApplication].processIdentifier || bundleId == nil) {
+        return;
+    }
     // Taken from SIMBL Agent. Kick off the injection
     SBApplication* app = [SBApplication applicationWithProcessIdentifier:pid];
     
-    
 	AEEventID eventID = 'load';
     
-    [app setSendMode:kAEWaitReply | kAENeverInteract | kAEDontRecord];
+    [app setTimeout:30];
+    NSLog(@"injecting into %@", bundleId);
+    [app setSendMode:kAENoReply | kAENeverInteract | kAEDontRecord];
 	id initReply = [app sendEvent:kASAppleScriptSuite id:kGetAEUT parameters:0];
     if(initReply != nil) {
         NSLog(@"appstagram got init reply: %@", initReply);
     }
-    
-	// the reply here is of some unknown type - it is not an Objective-C object
-	// as near as I can tell because trying to print it using "%@" or getting its
-	// class both cause the application to segfault. The pointer value always seems
-	// to be 0x10000 which is a bit fishy. It does not seem to be an AEDesc struct
-	// either.
-	// since we are waiting for a reply, it seems like this object might need to
-	// be released - but i don't know what it is or how to release it.
-	// NSLog(@"initReply: %p '%64.64s'", initReply, (char*)initReply);
 	
 	// Inject!
 	[app setSendMode:kAENoReply | kAENeverInteract | kAEDontRecord];
-	id injectReply = [app sendEvent:'SIMe' id:eventID parameters:0];
+	id injectReply = [app sendEvent:'OGND' id:eventID parameters:0];
     
     if(injectReply != nil) {
         NSLog(@"appstagram got inject reply: %@", injectReply);
@@ -276,9 +166,6 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 - (void)choseItem:(NSMenuItem*)item {
     NSRunningApplication* application = [[NSWorkspace sharedWorkspace] frontmostApplication];
     NSString* bundleId = application.bundleIdentifier;
-    if([self isAppSandboxed:bundleId] && ![self isPluginInstalledInSandbox:bundleId]) {
-        [self attemptToInstallInSandboxedApp:bundleId named:application.localizedName pid:application.processIdentifier];
-    }
     [self.filterMap setObject:item.title forKey:bundleId];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramChangedNotification object:bundleId userInfo:[NSDictionary dictionaryWithObject:item.title forKey:AppstagramFilterNameKey]];
 }
@@ -288,12 +175,13 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 }
 
 
-// Cribbed from http://stackoverflow.com/questions/815063/how-do-you-make-your-app-open-at-login
 
 - (NSURL *)appURL
 {
     return [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
 }
+
+// Cribbed from http://stackoverflow.com/questions/815063/how-do-you-make-your-app-open-at-login
 
 - (BOOL) willStartAtLogin
 {

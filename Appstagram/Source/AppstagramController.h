@@ -1,5 +1,5 @@
 //
-//  AppstagramSIMBL.h
+//  AppstagramController.h
 //  Appstagram
 //
 //  Created by Akiva Leffert on 4/9/12.
@@ -8,6 +8,6 @@
 
 
 
-@interface AppstagramSIMBL : NSObject
+@interface AppstagramController : NSObject
 
 @end

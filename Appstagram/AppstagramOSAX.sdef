@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="Appstagram Terminology">
+	<suite name="Appstagram Suite" code="OGND" description="Load Appstagram">
+		<command name="inject Appstagram into a running application" code="OGNDload" description="Inject Appstagram into the receiving application."/>
+	</suite>
+</dictionary>
