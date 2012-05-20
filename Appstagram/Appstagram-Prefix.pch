@@ -4,6 +4,6 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
-
+#import <ServiceManagement/ServiceManagement.h>
     #import <QuartzCore/CoreImage.h>
 #endif

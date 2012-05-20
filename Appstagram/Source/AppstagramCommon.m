@@ -12,3 +12,23 @@ NSString* AppstagramFilterAnnouncementNotification = @"AppstagramFilterAnnouncem
 NSString* AppstagramChangedNotification = @"AppstagramChangedNotification";
 
 NSString* AppstagramFilterNameKey = @"AppstagramFilterNameKey";
+
+NSString* AppstagramInstallationSourcePathKey = @"AppstagramInstallationSourcePathKey";
+NSString* AppstagramInstallationCommand = @"AppstagramInstallationCommand";
+NSString* AppstagramInstallationCommandResponseKey = @"AppstagramInstallationCommandResponseKey";
+
+const BASCommandSpec AppstagramPrivilegedHelperCommandSet[] = {
+    {	"AppstagramInstallationCommand",         // commandName
+        "com.ognid.install-appstagram",       // rightName
+        "default",                              // rightDefaultRule    -- by default, you have to have admin credentials (see the "default" rule in the authorization policy database, currently "/etc/authorization")
+        "AuthInstallCommandLineToolPrompt",				// rightDescriptionKey -- key for custom prompt in "Localizable.strings
+        NULL                                    // userData
+	},
+    
+    {	NULL,                                   // the array is null terminated
+        NULL, 
+        NULL, 
+        NULL,
+        NULL
+	}
+};

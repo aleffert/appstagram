@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
+#import "BetterAuthorizationSampleLib.h"
+
 extern NSString* AppstagramFilterAnnouncementNotification;
 extern NSString* AppstagramChangedNotification;
 extern NSString* AppstagramFilterNameKey;
+
+extern NSString* AppstagramInstallationSourcePathKey;
+extern NSString* AppstagramInstallationCommand;
+extern NSString* AppstagramInstallationCommandResponseKey;
+
+extern const BASCommandSpec AppstagramPrivilegedHelperCommandSet[];

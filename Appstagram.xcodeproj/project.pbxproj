@@ -12,6 +12,15 @@
 		77200C8F1537DFF800831670 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77200C8E1537DFF800831670 /* main.m */; };
 		77200C931537DFF800831670 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 77200C911537DFF800831670 /* Credits.rtf */; };
 		77200C991537DFF800831670 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77200C971537DFF800831670 /* MainMenu.xib */; };
+		775EDD6115695FF300722E8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77114DCF1533D07700EF693C /* Foundation.framework */; };
+		775EDD6415695FF300722E8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 775EDD6315695FF300722E8C /* main.m */; };
+		775EDD761569677000722E8C /* com.ognid.install-appstagram in CopyFiles */ = {isa = PBXBuildFile; fileRef = 775EDD5F15695FF300722E8C /* com.ognid.install-appstagram */; };
+		775EDD7815696C3300722E8C /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775EDD7715696C3300722E8C /* ServiceManagement.framework */; };
+		775EDD7C15696E4500722E8C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775EDD7B15696E4500722E8C /* Security.framework */; };
+		775EDD8515697AE200722E8C /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 775EDD8315697AE200722E8C /* BetterAuthorizationSampleLib.c */; };
+		775EDD86156980AE00722E8C /* AppstagramCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29FB1537E1FB00F31379 /* AppstagramCommon.m */; };
+		775EDD87156983D000722E8C /* BetterAuthorizationSampleLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 775EDD8315697AE200722E8C /* BetterAuthorizationSampleLib.c */; };
+		775EDD88156983DD00722E8C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775EDD7B15696E4500722E8C /* Security.framework */; };
 		778B29F71537E0FA00F31379 /* AppstagramDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29F61537E0FA00F31379 /* AppstagramDelegate.m */; };
 		778B29FC1537E1FB00F31379 /* AppstagramCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B29FB1537E1FB00F31379 /* AppstagramCommon.m */; };
 		77956DA2153B7713007C8424 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 77956DA1153B7713007C8424 /* menu-icon.png */; };
@@ -38,6 +47,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		775EDD73156963FC00722E8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77114DBE1533D07700EF693C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 775EDD5E15695FF300722E8C;
+			remoteInfo = "install-appstagram";
+		};
 		7780DDF21564B2F7007FA24D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 77114DBE1533D07700EF693C /* Project object */;
@@ -46,6 +62,28 @@
 			remoteInfo = AppstagramOSAX;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		775EDD5D15695FF300722E8C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		775EDD751569676900722E8C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
+			files = (
+				775EDD761569677000722E8C /* com.ognid.install-appstagram in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		77114DCA1533D07700EF693C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -67,6 +105,15 @@
 		773B938F156014CD00C75B2A /* sun-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sun-overlay.png"; sourceTree = SOURCE_ROOT; };
 		77548167153D1FC80073A599 /* AppstagramFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramFilterView.h; path = Appstagram/Source/AppstagramFilterView.h; sourceTree = "<group>"; };
 		77548168153D1FC80073A599 /* AppstagramFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramFilterView.m; path = Appstagram/Source/AppstagramFilterView.m; sourceTree = "<group>"; };
+		775EDD5F15695FF300722E8C /* com.ognid.install-appstagram */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "com.ognid.install-appstagram"; sourceTree = BUILT_PRODUCTS_DIR; };
+		775EDD6315695FF300722E8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		775EDD6615695FF300722E8C /* install-appstagram-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "install-appstagram-Prefix.pch"; sourceTree = "<group>"; };
+		775EDD7715696C3300722E8C /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		775EDD7915696DA500722E8C /* install-appstagram-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "install-appstagram-Info.plist"; sourceTree = "<group>"; };
+		775EDD7A15696DA500722E8C /* install-appstagram-Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "install-appstagram-Launchd.plist"; sourceTree = "<group>"; };
+		775EDD7B15696E4500722E8C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		775EDD8315697AE200722E8C /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BetterAuthorizationSampleLib.c; path = Source/BetterAuthorizationSampleLib.c; sourceTree = "<group>"; };
+		775EDD8415697AE200722E8C /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BetterAuthorizationSampleLib.h; path = Source/BetterAuthorizationSampleLib.h; sourceTree = "<group>"; };
 		777B8C36154F7FAA00F8C04F /* paper-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper-overlay.png"; sourceTree = SOURCE_ROOT; };
 		7781450A153D12A10049EEAE /* AppstagramOverlayWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppstagramOverlayWindow.h; path = Source/AppstagramOverlayWindow.h; sourceTree = "<group>"; };
 		7781450B153D12A10049EEAE /* AppstagramOverlayWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppstagramOverlayWindow.m; path = Source/AppstagramOverlayWindow.m; sourceTree = "<group>"; };
@@ -97,9 +144,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				775EDD7C15696E4500722E8C /* Security.framework in Frameworks */,
+				775EDD7815696C3300722E8C /* ServiceManagement.framework in Frameworks */,
 				77A3B13E15535EA000B8B446 /* ScriptingBridge.framework in Frameworks */,
 				77AF4DDD153A1864002E01E2 /* QuartzCore.framework in Frameworks */,
 				77200C871537DFF800831670 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		775EDD5C15695FF300722E8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				775EDD6115695FF300722E8C /* Foundation.framework in Frameworks */,
+				775EDD88156983DD00722E8C /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +179,7 @@
 				778B29FE1537E20600F31379 /* Common */,
 				77114DD01533D07700EF693C /* AppstagramOSAX */,
 				77200C881537DFF800831670 /* Appstagram */,
+				775EDD6215695FF300722E8C /* install-appstagram */,
 				77114DC81533D07700EF693C /* Products */,
 				77114DC91533D07700EF693C /* Frameworks */,
 				77F1A3A11564ACBE00AD3518 /* AppstagramOSAX copy-Info.plist */,
@@ -132,6 +191,7 @@
 			children = (
 				77200C851537DFF800831670 /* Appstagram.app */,
 				77F1A3A01564ACBD00AD3518 /* AppstagramOSAX.osax */,
+				775EDD5F15695FF300722E8C /* com.ognid.install-appstagram */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +199,8 @@
 		77114DC91533D07700EF693C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				775EDD7B15696E4500722E8C /* Security.framework */,
+				775EDD7715696C3300722E8C /* ServiceManagement.framework */,
 				77114DCD1533D07700EF693C /* AppKit.framework */,
 				77114DCE1533D07700EF693C /* CoreData.framework */,
 				77114DCF1533D07700EF693C /* Foundation.framework */,
@@ -184,6 +246,8 @@
 		77200C881537DFF800831670 /* Appstagram */ = {
 			isa = PBXGroup;
 			children = (
+				775EDD8315697AE200722E8C /* BetterAuthorizationSampleLib.c */,
+				775EDD8415697AE200722E8C /* BetterAuthorizationSampleLib.h */,
 				778B29F51537E0FA00F31379 /* AppstagramDelegate.h */,
 				778B29F61537E0FA00F31379 /* AppstagramDelegate.m */,
 				77200C891537DFF800831670 /* Supporting Files */,
@@ -202,6 +266,25 @@
 				77200C8E1537DFF800831670 /* main.m */,
 				77200C901537DFF800831670 /* Appstagram-Prefix.pch */,
 				77200C911537DFF800831670 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		775EDD6215695FF300722E8C /* install-appstagram */ = {
+			isa = PBXGroup;
+			children = (
+				775EDD6315695FF300722E8C /* main.m */,
+				775EDD7915696DA500722E8C /* install-appstagram-Info.plist */,
+				775EDD7A15696DA500722E8C /* install-appstagram-Launchd.plist */,
+				775EDD6515695FF300722E8C /* Supporting Files */,
+			);
+			path = "install-appstagram";
+			sourceTree = "<group>";
+		};
+		775EDD6515695FF300722E8C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				775EDD6615695FF300722E8C /* install-appstagram-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -230,16 +313,35 @@
 				77200C811537DFF800831670 /* Sources */,
 				77200C821537DFF800831670 /* Frameworks */,
 				77200C831537DFF800831670 /* Resources */,
+				775EDD751569676900722E8C /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				775EDD74156963FC00722E8C /* PBXTargetDependency */,
 				7780DDF31564B2F7007FA24D /* PBXTargetDependency */,
 			);
 			name = Appstagram;
 			productName = Appstagram;
 			productReference = 77200C851537DFF800831670 /* Appstagram.app */;
 			productType = "com.apple.product-type.application";
+		};
+		775EDD5E15695FF300722E8C /* install-appstagram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 775EDD6B15695FF300722E8C /* Build configuration list for PBXNativeTarget "install-appstagram" */;
+			buildPhases = (
+				775EDD5B15695FF300722E8C /* Sources */,
+				775EDD5C15695FF300722E8C /* Frameworks */,
+				775EDD5D15695FF300722E8C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "install-appstagram";
+			productName = "install-appstagram";
+			productReference = 775EDD5F15695FF300722E8C /* com.ognid.install-appstagram */;
+			productType = "com.apple.product-type.tool";
 		};
 		77F1A38A1564ACBD00AD3518 /* AppstagramOSAX */ = {
 			isa = PBXNativeTarget;
@@ -280,6 +382,7 @@
 			targets = (
 				77200C841537DFF800831670 /* Appstagram */,
 				77F1A38A1564ACBD00AD3518 /* AppstagramOSAX */,
+				775EDD5E15695FF300722E8C /* install-appstagram */,
 			);
 		};
 /* End PBXProject section */
@@ -323,6 +426,17 @@
 				77200C8F1537DFF800831670 /* main.m in Sources */,
 				778B29F71537E0FA00F31379 /* AppstagramDelegate.m in Sources */,
 				778B29FC1537E1FB00F31379 /* AppstagramCommon.m in Sources */,
+				775EDD8515697AE200722E8C /* BetterAuthorizationSampleLib.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		775EDD5B15695FF300722E8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				775EDD6415695FF300722E8C /* main.m in Sources */,
+				775EDD86156980AE00722E8C /* AppstagramCommon.m in Sources */,
+				775EDD87156983D000722E8C /* BetterAuthorizationSampleLib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +456,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		775EDD74156963FC00722E8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 775EDD5E15695FF300722E8C /* install-appstagram */;
+			targetProxy = 775EDD73156963FC00722E8C /* PBXContainerItemProxy */;
+		};
 		7780DDF31564B2F7007FA24D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 77F1A38A1564ACBD00AD3518 /* AppstagramOSAX */;
@@ -433,10 +552,12 @@
 		77200C9B1537DFF800831670 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = Ognid;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appstagram/Appstagram-Prefix.pch";
 				INFOPLIST_FILE = "Appstagram/Appstagram-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -444,11 +565,77 @@
 		77200C9C1537DFF800831670 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = Ognid;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appstagram/Appstagram-Prefix.pch";
 				INFOPLIST_FILE = "Appstagram/Appstagram-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		775EDD6915695FF300722E8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = Ognid;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "install-appstagram/install-appstagram-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"install-appstagram/install-appstagram-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"install-appstagram/install-appstagram-Launchd.plist",
+				);
+				PRODUCT_NAME = "com.ognid.install-appstagram";
+				PROVISIONING_PROFILE = "";
+				WARNING_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"install-appstagram/install-appstagram-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"install-appstagram/install-appstagram-Launchd.plist",
+				);
+			};
+			name = Debug;
+		};
+		775EDD6A15695FF300722E8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = Ognid;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "install-appstagram/install-appstagram-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"install-appstagram/install-appstagram-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"install-appstagram/install-appstagram-Launchd.plist",
+				);
+				PRODUCT_NAME = "com.ognid.install-appstagram";
+				PROVISIONING_PROFILE = "";
+				WARNING_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"install-appstagram/install-appstagram-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"install-appstagram/install-appstagram-Launchd.plist",
+				);
 			};
 			name = Release;
 		};
@@ -500,6 +687,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		775EDD6B15695FF300722E8C /* Build configuration list for PBXNativeTarget "install-appstagram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				775EDD6915695FF300722E8C /* Debug */,
+				775EDD6A15695FF300722E8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		77F1A39D1564ACBD00AD3518 /* Build configuration list for PBXNativeTarget "AppstagramOSAX" */ = {
 			isa = XCConfigurationList;

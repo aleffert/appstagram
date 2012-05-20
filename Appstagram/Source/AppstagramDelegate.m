@@ -9,6 +9,7 @@
 #import "AppstagramDelegate.h"
 
 #import "AppstagramCommon.h"
+#import "BetterAuthorizationSampleLib.h"
 
 #import "CGSPrivate.h"
 
@@ -84,7 +85,7 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 }
 
 - (NSString*)pluginSourcePath {
-    return [[NSBundle mainBundle] pathForResource:@"AppstagramOSAX" ofType:@"bundle"];
+    return [[NSBundle mainBundle] pathForResource:@"AppstagramOSAX" ofType:@"osax"];
 }
 
 - (NSString*)pluginDestinationPath {
@@ -99,8 +100,98 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     return [self isPluginInstalledAtPath:[self pluginDestinationPath]];
 }
 
+- (BOOL)blessHelperWithLabel:(NSString *)label error:(NSError **)error;
+{
+	BOOL result = NO;
+    
+	AuthorizationItem authItem		= { kSMRightBlessPrivilegedHelper, 0, NULL, 0 };
+	AuthorizationRights authRights	= { 1, &authItem };
+	AuthorizationFlags flags		=	kAuthorizationFlagDefaults				| 
+    kAuthorizationFlagInteractionAllowed	|
+    kAuthorizationFlagPreAuthorize			|
+    kAuthorizationFlagExtendRights;
+    
+	AuthorizationRef authRef = NULL;
+	
+	/* Obtain the right to install privileged helper tools (kSMRightBlessPrivilegedHelper). */
+	OSStatus status = AuthorizationCreate(&authRights, kAuthorizationEmptyEnvironment, flags, &authRef);
+	if (status != errAuthorizationSuccess) {
+		NSLog(@"Failed to create AuthorizationRef, return code %i", status);
+	} else {
+		/* This does all the work of verifying the helper tool against the application
+		 * and vice-versa. Once verification has passed, the embedded launchd.plist
+		 * is extracted and placed in /Library/LaunchDaemons and then loaded. The
+		 * executable is placed in /Library/PrivilegedHelperTools.
+		 */
+		result = SMJobBless(kSMDomainSystemLaunchd, (CFStringRef)label, authRef, (CFErrorRef *)error);
+	}
+    
+    AuthorizationFree(authRef, kAuthorizationFlagDefaults);
+	
+	return result;
+}
+
+// Via http://www.stevestreeting.com/2012/03/05/follow-up-os-x-privilege-escalation-without-using-deprecated-methods/
+- (BOOL)helperInstallPlugin:(NSString*)pluginPath authorization:(AuthorizationRef)auth {
+    OSStatus err = noErr;
+    NSString* bundleID = @"com.appstagram.install-appstagram";
+    CFDictionaryRef response = NULL;
+    
+    NSDictionary* request = [NSDictionary dictionaryWithObjectsAndKeys:
+               AppstagramInstallationCommand, @kBASCommandKey, 
+               pluginPath, AppstagramInstallationSourcePathKey, nil];
+    
+    // Execute it.
+    
+	err = BASExecuteRequestInHelperTool(auth, AppstagramPrivilegedHelperCommandSet, (CFStringRef) bundleID, (CFDictionaryRef) request, &response);
+    
+    // If the above went OK, it means that the IPC to the helper tool worked.  We 
+    // now have to check the response dictionary to see if the command's execution 
+    // within the helper tool was successful.   
+    
+    if (err == noErr) {
+        err = BASGetErrorFromResponse(response);
+        
+        NSString* respStr =  [(NSDictionary *)response objectForKey:AppstagramInstallationCommandResponseKey];
+        
+        
+        if(respStr == nil) {
+            [NSAlert alertWithMessageText:@"Installation succeeded! You will need to log out and log back in for the changes to take effect." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+        }
+        else {
+            [NSAlert alertWithMessageText:respStr defaultButton:@"Quit" alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+        }
+        [[NSApplication sharedApplication] terminate:self];
+    }
+    
+    if (response) 
+        CFRelease(response);
+    
+    return (err == noErr);
+}
+
+// Via http://www.stevestreeting.com/2012/03/05/follow-up-os-x-privilege-escalation-without-using-deprecated-methods/
 - (void)installPlugin {
-    // TODO spawn installer
+    NSError* error = nil;
+    [self blessHelperWithLabel:@"com.ognid.install-appstagram" error:&error];
+    if(error != nil) {
+        [[NSAlert alertWithError:error] runModal];
+        [[NSApplication sharedApplication] terminate:self];
+    }
+    else {
+        // The helper is installed. Execute it
+        AuthorizationRef auth;
+        if (AuthorizationCreate(NULL, NULL, kAuthorizationFlagDefaults, &auth)) {
+            [NSAlert alertWithMessageText:@"Unable to create authorization." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+            [[NSApplication sharedApplication] terminate:self];
+        }
+    	
+        BASSetDefaultRules(auth, 
+                           AppstagramPrivilegedHelperCommandSet, 
+                           CFBundleGetIdentifier(CFBundleGetMainBundle()), 
+                           NULL); // No separate strings file, use Localizable.strings
+        [self helperInstallPlugin:[self pluginSourcePath] authorization:auth];
+    }
 }
 
 - (void)uninstallPlugin {

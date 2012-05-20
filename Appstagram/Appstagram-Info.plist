@@ -34,5 +34,10 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SMPrivilegedExecutables</key>
+	<dict>
+		<key>com.ognid.install-appstagram</key>
+		<string>identifier &quot;com.ognid.install-appstagram&quot; and certificate leaf[subject.CN] = &quot;Ognid&quot;</string>
+	</dict>
 </dict>
 </plist>
