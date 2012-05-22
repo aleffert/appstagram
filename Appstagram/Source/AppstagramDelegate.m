@@ -100,12 +100,14 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     return [self isPluginInstalledAtPath:[self pluginDestinationPath]];
 }
 
-- (BOOL)blessHelperWithLabel:(NSString *)label error:(NSError **)error;
+- (AuthorizationRef)blessHelperWithLabel:(NSString *)label error:(NSError **)error;
 {
 	BOOL result = NO;
     
 	AuthorizationItem authItem		= { kSMRightBlessPrivilegedHelper, 0, NULL, 0 };
-	AuthorizationRights authRights	= { 1, &authItem };
+    AuthorizationItem modifyItem    = { kSMRightModifySystemDaemons, 0, NULL, 0 };
+    AuthorizationItem items[] = {authItem, modifyItem};
+	AuthorizationRights authRights	= { 2, items };
 	AuthorizationFlags flags		=	kAuthorizationFlagDefaults				| 
     kAuthorizationFlagInteractionAllowed	|
     kAuthorizationFlagPreAuthorize			|
@@ -125,10 +127,8 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 		 */
 		result = SMJobBless(kSMDomainSystemLaunchd, (CFStringRef)label, authRef, (CFErrorRef *)error);
 	}
-    
-    AuthorizationFree(authRef, kAuthorizationFlagDefaults);
 	
-	return result;
+	return authRef;
 }
 
 // Via http://www.stevestreeting.com/2012/03/05/follow-up-os-x-privilege-escalation-without-using-deprecated-methods/
@@ -174,7 +174,8 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 // Via http://www.stevestreeting.com/2012/03/05/follow-up-os-x-privilege-escalation-without-using-deprecated-methods/
 - (void)installPlugin {
     NSError* error = nil;
-    [self blessHelperWithLabel:@"com.ognid.install-appstagram" error:&error];
+    NSString* jobLabel = @"com.ognid.install-appstagram";
+    AuthorizationRef blessAuth = [self blessHelperWithLabel:jobLabel error:&error];
     if(error != nil) {
         [[NSAlert alertWithError:error] runModal];
         [[NSApplication sharedApplication] terminate:self];
@@ -192,6 +193,12 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
                            CFBundleGetIdentifier(CFBundleGetMainBundle()), 
                            NULL); // No separate strings file, use Localizable.strings
         [self helperInstallPlugin:[self pluginSourcePath] authorization:auth];
+        CFErrorRef error = nil;
+        BOOL success = SMJobRemove(kSMDomainSystemLaunchd, (CFStringRef)jobLabel, blessAuth, NO, &error);
+        if(!success) {
+            [NSAlert alertWithError:(NSError*)error];
+        }
+        AuthorizationFree(blessAuth, kAuthorizationFlagDefaults);
     }
 }
 
