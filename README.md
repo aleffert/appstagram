@@ -7,3 +7,5 @@ See the internet in sepia, blur your music, or rosetint your correspondence: App
 It's fresh, ridiculous, and open source.
 
 http://ognid.com/appstagram
+
+Requires OSX 10.7 Mountain Lion
