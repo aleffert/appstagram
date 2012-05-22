@@ -48,7 +48,6 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Open on Login" action:@selector(toggleOpenOnLogin:) keyEquivalent:@""];
     self.openOnLoginItem = [menu.itemArray lastObject];
-    [menu addItemWithTitle:@"Uninstall…" action:@selector(uninstall:) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(quit:) keyEquivalent:@""];
     
@@ -77,6 +76,7 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(filterAnnouncement:) name:AppstagramFilterAnnouncementNotification object:nil];
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appOpened:) name:NSWorkspaceDidLaunchApplicationNotification object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramStartedNotification object:nil];
 }
 
 - (void)appOpened:(NSNotification*)notification {
@@ -156,12 +156,13 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
         
         
         if(respStr == nil) {
-            [NSAlert alertWithMessageText:@"Installation succeeded! You will need to log out and log back in for the changes to take effect." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+            [[NSAlert alertWithMessageText:@"Installation succeeded! You will need to quit and reopen any running applications to affect them. Newly launched applications will be filterable." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Logout and log back in to easily apply Appstagram to all your applications."] runModal];
+            [self setStartAtLogin:YES];
         }
         else {
-            [NSAlert alertWithMessageText:respStr defaultButton:@"Quit" alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+            [[NSAlert alertWithMessageText:respStr defaultButton:@"Quit" alternateButton:nil otherButton:nil informativeTextWithFormat:@""] runModal];
+            [[NSApplication sharedApplication] terminate:self];
         }
-        [[NSApplication sharedApplication] terminate:self];
     }
     
     if (response) 
@@ -194,20 +195,6 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     }
 }
 
-- (void)uninstallPlugin {
-    // TODO spawn uninstaller
-}
-
-- (void)uninstall:(id)sender {
-    NSAlert* alert = [NSAlert alertWithMessageText:@"Are you sure you want to uninstall Appstagram?" defaultButton:@"Uninstall" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"You will need to log out and log back in for the changes to take effect."];
-    NSInteger result = [alert runModal];
-    if(result == NSAlertDefaultReturn) {
-        [self setStartAtLogin:NO];
-        [self uninstallPlugin];
-        [[NSApplication sharedApplication] terminate:self];
-    }
-}
-
 - (void)installPluginIfNecessary {
     if(![self isPluginInstalled]) {
         [self installPlugin];
@@ -237,7 +224,7 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
     
 	AEEventID eventID = 'load';
     
-    [app setTimeout:30];
+    [app setTimeout:10];
     NSLog(@"injecting into %@", bundleId);
     [app setSendMode:kAENoReply | kAENeverInteract | kAEDontRecord];
 	id initReply = [app sendEvent:kASAppleScriptSuite id:kGetAEUT parameters:0];
@@ -262,6 +249,7 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 }
 
 - (void)quit:(NSMenuItem*)sender {
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:AppstagramQuittingNotification object:nil];
     [[NSApplication sharedApplication] terminate:self];
 }
 

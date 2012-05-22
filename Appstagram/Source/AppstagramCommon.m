@@ -10,6 +10,8 @@
 
 NSString* AppstagramFilterAnnouncementNotification = @"AppstagramFilterAnnouncementNotification";
 NSString* AppstagramChangedNotification = @"AppstagramChangedNotification";
+NSString* AppstagramQuittingNotification = @"AppstagramQuittingNotification";
+NSString* AppstagramStartedNotification = @"AppstagramStartedNotification";
 
 NSString* AppstagramFilterNameKey = @"AppstagramFilterNameKey";
 

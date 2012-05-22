@@ -13,10 +13,13 @@
 
 extern NSString* AppstagramFilterAnnouncementNotification;
 extern NSString* AppstagramChangedNotification;
+extern NSString* AppstagramQuittingNotification;
 extern NSString* AppstagramFilterNameKey;
+extern NSString* AppstagramStartedNotification;
 
 extern NSString* AppstagramInstallationSourcePathKey;
 extern NSString* AppstagramInstallationCommand;
 extern NSString* AppstagramInstallationCommandResponseKey;
+
 
 extern const BASCommandSpec AppstagramPrivilegedHelperCommandSet[];

@@ -15,6 +15,7 @@
 #import "NSWindow+AppstagramFilter.h"
 
 @interface AppstagramController ()
+@property (assign) BOOL appstagramRunning;
 - (void)useFilterNamed:(NSString*)filterName;
 - (void)sendFilterAnnouncement;
 @end
@@ -30,6 +31,8 @@ OSErr InjectAppstagram(const AppleEvent *ev, AppleEvent *reply, long refcon)
 
 @implementation AppstagramController
 
+@synthesize appstagramRunning = _appstagramRunning;
+
 + (void)load
 {
     static dispatch_once_t onceToken;
@@ -37,11 +40,13 @@ OSErr InjectAppstagram(const AppleEvent *ev, AppleEvent *reply, long refcon)
     dispatch_once(&onceToken, ^{
         NSLog(@"Loaded appstagram into %@", [[NSRunningApplication currentApplication] bundleIdentifier]);
         controller = [[AppstagramController alloc] init];
+        controller.appstagramRunning = YES;
         [[NSDistributedNotificationCenter defaultCenter] addObserver:controller selector:@selector(changeFilter:) name:AppstagramChangedNotification object:[[NSRunningApplication currentApplication] bundleIdentifier]];
-        
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:controller selector:@selector(appstagramQuitting:) name:AppstagramQuittingNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(windowUpdated:) name:NSWindowDidUpdateNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(windowUpdated:) name:NSWindowDidBecomeMainNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(becameFrontApp:) name:NSApplicationDidBecomeActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(becameFrontApp:) name:NSApplicationWillBecomeActiveNotification object:nil];
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:controller selector:@selector(appstagramStarted:) name:AppstagramStartedNotification object:nil];
         
         NSString* filterName = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
         [controller useFilterNamed:filterName];
@@ -77,7 +82,6 @@ OSErr InjectAppstagram(const AppleEvent *ev, AppleEvent *reply, long refcon)
 }
 
 - (void)useFilterNamed:(NSString*)filterName forWindows:(NSArray*)windows {
-    [[NSUserDefaults standardUserDefaults] setObject:filterName forKey:AppstagramFilterNameKey];
     AppstagramFilter* filter = [AppstagramFilter filterNamed:filterName];
     if(filter == nil) {
         filter = [AppstagramFilter plainFilter];
@@ -96,14 +100,27 @@ OSErr InjectAppstagram(const AppleEvent *ev, AppleEvent *reply, long refcon)
 - (void)windowUpdated:(NSNotification*)notification {
     NSWindow* window = notification.object;
     NSString* filterName = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
-    if(filterName != nil) {
+    if(filterName != nil && self.appstagramRunning) {
         [self useFilterNamed:filterName forWindows:[NSArray arrayWithObject:window]];
     }
 }
 
 - (void)changeFilter:(NSNotification*)notification {
     NSString* filterName = [[notification userInfo] objectForKey:AppstagramFilterNameKey];
+    [[NSUserDefaults standardUserDefaults] setObject:filterName forKey:AppstagramFilterNameKey];
     [self useFilterNamed:filterName];
+}
+
+- (void)appstagramStarted:(NSNotification*)notification {
+    self.appstagramRunning = YES;
+    NSString* filterName = [[NSUserDefaults standardUserDefaults] objectForKey:AppstagramFilterNameKey];
+    [self useFilterNamed:filterName];
+    [self sendFilterAnnouncement];
+}
+
+- (void)appstagramQuitting:(NSNotification*)notification {
+    self.appstagramRunning = NO;
+    [self useFilterNamed:nil];
 }
 
 @end
