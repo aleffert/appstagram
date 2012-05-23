@@ -36,7 +36,7 @@ NSString* AppstagramAffectedSandboxesKey = @"AppstagramAffectedSandboxesKey";
 @synthesize statusItem = mStatusItem;
 
 - (NSArray*)filterNames {
-    return [NSArray arrayWithObjects:@"Boring", @"Ennui", @"Shootout", @"La Vie en Rose", @"Cobb", @"Haze", @"Wastebasket", @"Apollo", @"Glow", @"Roebling", @"Spring", nil];
+    return [NSArray arrayWithObjects:@"Boring", @"Ennui", @"Shootout", @"La Vie en Rose", @"Cobb", @"Haze", @"Wastebasket", @"Apollo", @"Colorblind", @"Glow", @"Roebling", @"Spring", nil];
 }
 
 - (void)makeFilterMenu {

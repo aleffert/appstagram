@@ -29,6 +29,7 @@ typedef void (^Block)();
 + (AppstagramFilter*)glowFilter;
 + (AppstagramFilter*)blueRedFilter;
 + (AppstagramFilter*)sunFilter;
++ (AppstagramFilter*)colorblindFilter;
 + (AppstagramFilter*)vibranceFilter;
 + (AppstagramFilter*)peachFilter;
 
@@ -54,6 +55,7 @@ typedef void (^Block)();
                    [AppstagramFilter blueRedFilter], @"Roebling",
                    [AppstagramFilter glowFilter], @"Glow",
                    [AppstagramFilter sunFilter], @"Apollo",
+                   [AppstagramFilter colorblindFilter], @"Colorblind",
                    [AppstagramFilter vibranceFilter], @"Spring",
                    [AppstagramFilter peachFilter], @"Cobb",
                    nil];
@@ -153,6 +155,41 @@ typedef void (^Block)();
     CGSConnection connection = _CGSDefaultConnection();
     CGSNewCIFilterByName(connection, (CFStringRef)@"CIBoxBlur", &filter);
 	CGSSetCIFilterValuesFromDictionary(connection, filter, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:4] forKey:@"inputRadius"]);
+    
+    result.applyBlock = ^(NSWindow* window) {
+        CGSAddWindowFilter(connection, (int)window.windowNumber, filter, 4);
+    };
+    result.removeBlock = ^(NSWindow* window) {
+        CGSRemoveWindowFilter(connection, (int)window.windowNumber, filter);
+    };
+    result.cleanupBlock = ^ {
+        CGSReleaseCIFilter(connection, filter);
+    };
+    
+    return result;
+}
+
++ (AppstagramFilter*)colorblindFilter {
+    AppstagramFilter* result = [[[AppstagramFilter alloc] init] autorelease];
+    CGSWindowFilterRef filter = NULL;
+    CGSConnection connection = _CGSDefaultConnection();
+    
+    CIVector* rVector = [CIVector vectorWithX:.45 Y:.55 Z:0 W:0];
+    CIVector* gVector = [CIVector vectorWithX:.45 Y:.55 Z:0 W:0];
+    CIVector* bVector = [CIVector vectorWithX:0 Y:0 Z:1 W:0];
+    CIVector* aVector = [CIVector vectorWithX:0 Y:0 Z:0 W:1];
+    CIVector* biasVector = [CIVector vectorWithX:0 Y:0 Z:0 W:0];
+    
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                rVector.stringRepresentation, @"inputRVector",
+                                gVector.stringRepresentation, @"inputGVector",
+                                bVector.stringRepresentation, @"inputBVector",
+                                aVector.stringRepresentation, @"inputAVector",
+                                biasVector.stringRepresentation, @"inputBiasVector",
+                                nil];
+    
+    CGSNewCIFilterByName(connection, (CFStringRef)@"CIColorMatrix", &filter);
+	CGSSetCIFilterValuesFromDictionary(connection, filter, (CFDictionaryRef)parameters);
     
     result.applyBlock = ^(NSWindow* window) {
         CGSAddWindowFilter(connection, (int)window.windowNumber, filter, 4);
