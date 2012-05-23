@@ -8,4 +8,4 @@ It's fresh, ridiculous, and open source.
 
 http://ognid.com/appstagram
 
-Requires OSX 10.7 Mountain Lion
+Requires OSX 10.7 Lion
